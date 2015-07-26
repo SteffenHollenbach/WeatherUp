@@ -58,7 +58,7 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_city_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"/>
 
             </TableRow>
 
@@ -155,7 +155,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_pressure"
@@ -176,7 +177,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_visibility"
@@ -195,5 +197,12 @@
         </TableLayout>
     </ScrollView>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/btn_save"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
