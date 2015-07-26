@@ -19,7 +19,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     ListView lv_source;
-    Context c;
+    static Context c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
         setTitle("Select Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
-        String[] sources = new String[] {"GPS", "Zip-Code", "ID"};
+        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "History"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < sources.length; ++i) {
@@ -55,6 +55,9 @@ public class MainActivity extends ActionBarActivity {
                     c.startActivity(intent);
                 }else if (position == 2){
                     Intent intent = new Intent(c, SearchByID_Class.class);
+                    c.startActivity(intent);
+                }else if (position == 3){
+                    Intent intent = new Intent(c, History_Class.class);
                     c.startActivity(intent);
                 }else {
                     Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();
