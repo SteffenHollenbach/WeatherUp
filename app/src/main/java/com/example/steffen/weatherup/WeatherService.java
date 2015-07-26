@@ -14,5 +14,8 @@ public interface WeatherService {
     void getWeatherZip(@Query("zip") String zip, @Query("units") String units, Callback<WeatherObject> callback);
 
     @GET("/weather")
+    void getWeatherID(@Query("id") String id, @Query("units") String units, Callback<WeatherObject> callback);
+
+    @GET("/weather")
     void getWeatherGPS(@Query("lat") String lat, @Query("lon") String lon, @Query("units") String units, Callback<WeatherObject> callback);
 }

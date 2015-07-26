@@ -81,26 +81,15 @@ public class SearchByGPS_Class extends ActionBarActivity {
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
 
-
-
-           /* if (!(lat.equals("0.0") && lon.equals("0.0"))) {
-
-                System.out.println("Standort gefunden.");
-                Log.e("Location Check", lat + ", " + lon);
-                getWeatherGPS(lat, lon, "metric");
-            } else {
-                System.out.println("Standort wird bestimmt. Bitte warten. " + i);
-            }*/
-
-
-        //getWeatherGPS(lat, lon, "metric");
-
     }
 
 
 
     public void getWeatherGPS(String lat, String lon, String units){
-        Log.e("FIND BY GPS", lat+", "+lon);
+
+        locationManager.removeUpdates(locationListener);
+        locationManager = null;
+
         weatherservice.getWeatherGPS(lat, lon, units, new Callback<WeatherObject>() {
 
             @Override

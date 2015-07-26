@@ -28,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
 
         c = this;
 
+        setTitle("Select Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
         String[] sources = new String[] {"GPS", "Zip-Code", "ID"};
@@ -53,7 +54,8 @@ public class MainActivity extends ActionBarActivity {
                     Intent intent = new Intent(c, SearchByZip_Class.class);
                     c.startActivity(intent);
                 }else if (position == 2){
-                    Toast.makeText(c, "ID not working now", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(c, SearchByID_Class.class);
+                    c.startActivity(intent);
                 }else {
                     Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();
                 }

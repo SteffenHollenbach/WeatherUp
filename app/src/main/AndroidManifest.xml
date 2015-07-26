@@ -15,15 +15,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="Select Source" >
+            android:label="WeatherUp" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchByZip_Class" android:label="Enter ZIP"/>
+        <activity android:name=".SearchByZip_Class" android:label="Enter Zip-Code"/>
         <activity android:name=".SearchByGPS_Class" android:label="Search GPS"/>
+        <activity android:name=".SearchByID_Class" android:label="Enter City-ID"/>
         <activity android:name=".ShowResult_Class"  android:label="Result"/>
     </application>
 
