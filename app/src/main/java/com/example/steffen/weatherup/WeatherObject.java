@@ -2,16 +2,17 @@ package com.example.steffen.weatherup;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Steffen on 25.07.2015.
  */
-public class WeatherObject {
+public class WeatherObject implements Serializable{
     @Expose
     Coord coord;
 
-    public static class Coord {
+    public static class Coord implements Serializable{
         String lon;
         String lat;
     }
@@ -19,7 +20,7 @@ public class WeatherObject {
     @Expose
     List<Weather> weather;
 
-    public static class Weather {
+    public static class Weather implements Serializable{
         String id;
         String main;
         String description;
@@ -30,7 +31,7 @@ public class WeatherObject {
     @Expose
     Main main;
 
-    public static class Main {
+    public static class Main implements Serializable{
         String temp;
         String pressure;
         String humidity;
@@ -41,7 +42,7 @@ public class WeatherObject {
     @Expose
     Wind wind;
 
-    public static class Wind {
+    public static class Wind implements Serializable{
         String speed;
         String deg;
     }
@@ -49,14 +50,14 @@ public class WeatherObject {
     @Expose
     Clouds clouds;
 
-    public static class Clouds {
+    public static class Clouds implements Serializable{
         String all;
     }
 
     @Expose
     Sys sys;
 
-    public static class Sys {
+    public static class Sys implements Serializable{
         String type;
         String id;
         String message;

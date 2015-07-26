@@ -3,6 +3,10 @@
     package="com.example.steffen.weatherup" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-sdk android:minSdkVersion="16"/>
 
     <application
         android:allowBackup="true"
@@ -11,13 +15,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="Select Source" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SearchByZip_Class" android:label="Enter ZIP"/>
+        <activity android:name=".SearchByGPS_Class" android:label="Search GPS"/>
+        <activity android:name=".ShowResult_Class"  android:label="Result"/>
     </application>
 
 </manifest>

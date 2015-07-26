@@ -1,99 +1,68 @@
 package com.example.steffen.weatherup;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    String ENDPOINT = "http://api.openweathermap.org/data/2.5";
-    TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result;
-    Button btn_get;
-    EditText et_zip;
-    WeatherService weatherservice;
+
+    ListView lv_source;
+    Context c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.select_source_layout);
 
-        tv_city_result = (TextView) findViewById(R.id.tv_city_result);
-        tv_temp_result = (TextView) findViewById(R.id.tv_temp_result);
-        tv_weather_desc_result = (TextView) findViewById(R.id.tv_weather_desc_result);
-        tv_wind_speed_result = (TextView) findViewById(R.id.tv_wind_speed_result);
-        tv_humidity_result = (TextView) findViewById(R.id.tv_humidity_result);
-
-        btn_get = (Button) findViewById(R.id.btn_get);
-        et_zip = (EditText) findViewById(R.id.et_zip);
+        c = this;
 
 
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint(ENDPOINT)
-                .build();
+        lv_source = (ListView) findViewById(R.id.listview);
+        String[] sources = new String[] {"GPS", "Zip-Code", "ID"};
 
-        weatherservice = restAdapter.create(WeatherService.class);
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < sources.length; ++i) {
+            list.add(sources[i]);
+        }
+        final ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, list);
+        lv_source.setAdapter(adapter);
 
-        btn_get.setOnClickListener(new View.OnClickListener() {
+        lv_source.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public void onClick(View arg0) {
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
 
-                String zip = et_zip.getText().toString();
-                getWeatherZip(zip + ",de", "metric");
-
-            }
-
-        });
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-    public void getWeatherZip(String zip, String units){
-        weatherservice.getWeatherZip(zip, units, new Callback<WeatherObject>() {
-
-            @Override
-            public void success(WeatherObject wo, Response response) {
-                Log.i("Gefunden", "True");
-                if(wo.cod.equals("200")) {
-                    tv_city_result.setText(wo.name);
-                    tv_temp_result.setText(wo.main.temp + " °C");
-                    tv_weather_desc_result.setText(wo.weather.get(0).description);
-                    tv_wind_speed_result.setText(wo.wind.speed + " km/h");
-                    tv_humidity_result.setText(wo.main.humidity + " %");
-                } else {
-                    tv_city_result.setText("Fehler");
+                if (position == 0){
+                    Intent intent = new Intent(c, SearchByGPS_Class.class);
+                    c.startActivity(intent);
+                }else if (position == 1){
+                    Intent intent = new Intent(c, SearchByZip_Class.class);
+                    c.startActivity(intent);
+                }else if (position == 2){
+                    Toast.makeText(c, "ID not working now", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
-            @Override
-            public void failure(RetrofitError error) {
-                Log.e("Gefunden", "Nein: " + error);
-            }
         });
+
     }
-
-
 
 
     @Override

@@ -1,0 +1,121 @@
+package com.example.steffen.weatherup;
+
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+/**
+ * Created by Steffen on 26.07.2015.
+ */
+public class SearchByGPS_Class extends ActionBarActivity {
+
+    final String ENDPOINT = "http://api.openweathermap.org/data/2.5";
+    WeatherService weatherservice;
+    Context c;
+    String provider;
+
+    LocationManager locationManager;
+    LocationListener locationListener;
+    double aktPos[];
+    String lat, lon;
+    Boolean first = true;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.loading_gps_layout);
+
+        c = this;
+        aktPos = new double[2];
+        lat = "0.0";
+        lon = "0.0";
+
+
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint(ENDPOINT)
+                .build();
+
+        weatherservice = restAdapter.create(WeatherService.class);
+
+
+
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+                aktPos[0] = location.getLatitude();
+                aktPos[1] = location.getLongitude();
+
+                lat = location.getLatitude()+"";
+                lon = location.getLongitude()+"";
+
+                Log.e("Location", lat+", "+lon);
+                if (first) {
+                    first = false;
+                    getWeatherGPS(lat, lon, "metric");
+                }
+            }
+
+            public void onStatusChanged(String provider, int status,
+                                        Bundle extras) {
+            }
+
+            public void onProviderEnabled(String provider) {
+            }
+
+            public void onProviderDisabled(String provider) {
+            }
+        };
+
+
+        locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+
+
+
+           /* if (!(lat.equals("0.0") && lon.equals("0.0"))) {
+
+                System.out.println("Standort gefunden.");
+                Log.e("Location Check", lat + ", " + lon);
+                getWeatherGPS(lat, lon, "metric");
+            } else {
+                System.out.println("Standort wird bestimmt. Bitte warten. " + i);
+            }*/
+
+
+        //getWeatherGPS(lat, lon, "metric");
+
+    }
+
+
+
+    public void getWeatherGPS(String lat, String lon, String units){
+        Log.e("FIND BY GPS", lat+", "+lon);
+        weatherservice.getWeatherGPS(lat, lon, units, new Callback<WeatherObject>() {
+
+            @Override
+            public void success(WeatherObject wo, Response response) {
+                Log.i("Gefunden", "True");
+
+                Intent intent = new Intent(c, ShowResult_Class.class);
+                intent.putExtra("WeaterObject", wo);
+                c.startActivity(intent);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.e("Gefunden", "Nein: " + error);
+            }
+        });
+    }
+}
