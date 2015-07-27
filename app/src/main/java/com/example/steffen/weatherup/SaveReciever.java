@@ -15,9 +15,9 @@ import android.widget.Toast;
 public class SaveReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
-            Log.v("WhatTheDroidService", " Boot komplett.");
-            Toast.makeText(context, "Received", Toast.LENGTH_SHORT).show();
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) || intent.getAction().equals("StartSaveService")) {
+            Log.v("WhatTheDroidService", " Boot komplett bzw. StartService recieved.");
+            Toast.makeText(context, "Recieved", Toast.LENGTH_SHORT).show();
 
             Intent saveServiceIntent = new Intent(context, SaveService.class);
             PendingIntent saveServicePendingIntent =

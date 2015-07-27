@@ -29,7 +29,7 @@ public class AutoSave_Class extends Activity{
 
                 SaveReciever sat = new SaveReciever();
                 Intent intent = new Intent();
-                intent.setAction("Intent.ACTION_BOOT_COMPLETED");
+                intent.setAction("StartSaveService");
                 sat.onReceive(c, intent);
 
             }
