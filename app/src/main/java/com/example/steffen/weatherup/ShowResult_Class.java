@@ -78,6 +78,7 @@ public class ShowResult_Class extends ActionBarActivity {
 
                 }else if(basic == false){
                     basic = true;
+                    true = true;
 
                     t6.setVisibility(View.GONE);
                     t7.setVisibility(View.GONE);
