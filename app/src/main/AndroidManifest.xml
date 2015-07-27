@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <uses-sdk android:minSdkVersion="16"/>
 
@@ -27,6 +28,24 @@
         <activity android:name=".SearchByID_Class" android:label="Enter City-ID"/>
         <activity android:name=".ShowResult_Class"  android:label="Result"/>
         <activity android:name=".History_Class"  android:label="History"/>
+        <activity android:name=".AutoSave_Class"  android:label="Auto Save"/>
+
+        <service android:name=".SaveService">
+            <intent-filter>
+                <action android:name="de.whatthedroid.startedservices.WTDStartedActivity">
+                </action>
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".SaveReciever">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED">
+                </action>
+                <category android:name="android.intent.category.HOME">
+                </category>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

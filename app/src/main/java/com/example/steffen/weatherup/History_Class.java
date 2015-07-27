@@ -89,7 +89,11 @@ public class History_Class extends ActionBarActivity {
     }
 
     public void add(WeatherObject wo) {
-        Realm realm = Realm.getInstance(MainActivity.c);
+        this.add(wo, MainActivity.c);
+    }
+
+    public void add(WeatherObject wo, Context c) {
+        Realm realm = Realm.getInstance(c);
         realm.beginTransaction();
         RetrofitToRealmAdapter woA = realm.createObject(RetrofitToRealmAdapter.class);
 
@@ -129,7 +133,7 @@ public class History_Class extends ActionBarActivity {
         realm.commitTransaction();
         woList.add(woA);
         //mAdapter.notifyDataSetChanged();
-        Toast.makeText(MainActivity.c, "Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(c, "Saved", Toast.LENGTH_SHORT).show();
     }
 
 
