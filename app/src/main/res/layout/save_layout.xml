@@ -7,6 +7,26 @@
         android:layout_height="wrap_content"
         android:text="Start Service"
         android:id="@+id/btn_start"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="168dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Service"
+        android:id="@+id/btn_stop"
+        android:layout_below="@+id/btn_start"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service is running"
+        android:id="@+id/cb_running"
+        android:layout_below="@+id/btn_stop"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:checked="false"
+        android:clickable="false" />
 </RelativeLayout>

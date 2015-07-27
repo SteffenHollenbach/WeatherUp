@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
         setTitle("Select Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
-        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "History", "Settings"};
+        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "History", "Service-Settings"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < sources.length; ++i) {

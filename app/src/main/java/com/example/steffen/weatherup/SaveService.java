@@ -20,6 +20,7 @@ public class SaveService extends Service {
     WeatherService weatherservice;
     Context c;
 
+
     @Override
     public IBinder onBind(Intent intent) {
 
@@ -37,6 +38,8 @@ public class SaveService extends Service {
 
         weatherservice = restAdapter.create(WeatherService.class);
         c = this;
+
+
     }
 
     @Override
