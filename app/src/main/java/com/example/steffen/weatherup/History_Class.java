@@ -63,6 +63,28 @@ public class History_Class extends ActionBarActivity {
 
         });
 
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String s = mListView.getAdapter().getItem(position).toString();
+                RetrofitToRealmAdapter woToDelete = (loadSingle(s));
+
+                Realm realm = Realm.getInstance(c);
+                realm.beginTransaction();
+                woToDelete.removeFromRealm();
+                realm.commitTransaction();
+                finish();
+
+                Toast.makeText(MainActivity.c, "Eintrag '"+s+"' entfernt", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(c, History_Class.class);
+                c.startActivity(intent);
+
+                return true;
+            }
+        });
+
     }
 
     public void loadData() {
@@ -72,6 +94,10 @@ public class History_Class extends ActionBarActivity {
         for (RetrofitToRealmAdapter woA : query) {
             woList.add(woA);
             saved.add(woA.getName() + "," + woA.getDate()+ "," + woA.getTime());
+        }
+
+        if (saved.size() == 0){
+            Toast.makeText(MainActivity.c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
         }
     }
 

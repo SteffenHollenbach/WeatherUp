@@ -38,8 +38,8 @@ public class SaveReciever extends BroadcastReceiver {
             //Wann soll der Service das erste Mal gestartet werden?
             long firstStart = System.currentTimeMillis();
 
-            am.setRepeating(AlarmManager.RTC, firstStart, interval, saveServicePendingIntent);
-            //am.setRepeating(AlarmManager.RTC, firstStart, AlarmManager.INTERVAL_HOUR, saveServicePendingIntent);//AlarmManager.INTERVAL_HOUR
+            //am.setRepeating(AlarmManager.RTC, firstStart, interval, saveServicePendingIntent);
+            am.setRepeating(AlarmManager.RTC, firstStart, AlarmManager.INTERVAL_HALF_HOUR, saveServicePendingIntent);//AlarmManager.INTERVAL_HOUR
             prefs.edit().putBoolean("AlarmSet", true).apply();
 
             Log.v("WhatTheDroidService", "AlarmManager gesetzt");
