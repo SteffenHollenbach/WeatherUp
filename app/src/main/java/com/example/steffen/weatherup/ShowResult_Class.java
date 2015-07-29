@@ -28,7 +28,7 @@ public class ShowResult_Class extends ActionBarActivity {
 
         c = this;
         wo = (WeatherObject) getIntent().getSerializableExtra("WeaterObject");
-        wo = WeatherObject.checkNull(wo);
+
 
         tv_city_result = (TextView) findViewById(R.id.tv_city_result);
         tv_temp_result = (TextView) findViewById(R.id.tv_temp_result);
@@ -40,6 +40,8 @@ public class ShowResult_Class extends ActionBarActivity {
         btn_view = (Button) findViewById(R.id.btn_view);
 
         if(wo.getCod().equals("200")) {
+            wo = WeatherObject.checkNull(wo);
+
             tv_city_result.setText(wo.getName());
             tv_temp_result.setText(wo.getMain().getTemp() + " °C");
             tv_weather_desc_result.setText(wo.getWeather().get(0).getDescription());
@@ -47,6 +49,7 @@ public class ShowResult_Class extends ActionBarActivity {
             tv_humidity_result.setText(wo.getMain().getHumidity() + " m");
         } else {
            tv_city_result.setText("Fehler");
+           btn_save.setEnabled(false);
         }
 
         btn_save.setOnClickListener(new View.OnClickListener() {
