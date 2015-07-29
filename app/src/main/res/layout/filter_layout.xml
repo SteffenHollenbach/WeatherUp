@@ -48,6 +48,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/et_date"
-        android:layout_alignEnd="@+id/et_date"
-        android:text="Gau-Algesheim" />
+        android:layout_alignEnd="@+id/et_date" />
 </RelativeLayout>

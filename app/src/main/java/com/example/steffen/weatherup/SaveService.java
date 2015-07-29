@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class SaveService extends Service {
     final String ENDPOINT = "http://api.openweathermap.org/data/2.5";
     WeatherService weatherservice;
     Context c;
+    SharedPreferences prefs;
 
 
     @Override
@@ -43,6 +45,8 @@ public class SaveService extends Service {
         weatherservice = restAdapter.create(WeatherService.class);
         c = this;
 
+        prefs = c.getSharedPreferences(
+                "Share", Context.MODE_PRIVATE);
 
     }
 
@@ -72,7 +76,11 @@ public class SaveService extends Service {
                 + ": WhatTheDroidService zerstoert.");
     }
 
-    public void getWeatherID(String id, String units){
+    public void getWeatherID(final String id, String units){
+
+        if (prefs.getInt("Get" + id, -1) == -1){
+            prefs.edit().putInt("Get" + id, 0).apply();
+        }
         weatherservice.getWeatherID(id, units, new Callback<WeatherObject>() {
 
             @Override
@@ -86,16 +94,26 @@ public class SaveService extends Service {
             @Override
             public void failure(RetrofitError error) {
 
-                Intent saveServiceIntent = new Intent(c, SaveService.class);
-                PendingIntent saveServicePendingIntent =
-                        PendingIntent.getService(c, 0, saveServiceIntent, 0);
-                AlarmManager am = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+                int round = prefs.getInt("Get" + id, 0);
 
-                //Wie gross soll der Intervall sein?
-                long interval = DateUtils.MINUTE_IN_MILLIS * 5; // Alle 5 Minuten
+                if (round < 3) {
+                    round++;
+                    prefs.edit().putInt("Get" + id, round).apply();
 
-                am.set(AlarmManager.RTC, System.currentTimeMillis()+interval, saveServicePendingIntent);
-                Toast.makeText(c, "Can't save weater-data, retry in 5 minutes", Toast.LENGTH_SHORT).show();
+                    Intent saveServiceIntent = new Intent(c, SaveService.class);
+                    PendingIntent saveServicePendingIntent =
+                            PendingIntent.getService(c, 0, saveServiceIntent, 0);
+                    AlarmManager am = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+
+                    //Wie gross soll der Intervall sein?
+                    long interval = DateUtils.MINUTE_IN_MILLIS * 5; // Alle 5 Minuten
+
+                    am.set(AlarmManager.RTC, System.currentTimeMillis() + interval, saveServicePendingIntent);
+                    Toast.makeText(c, "Can't save weater-data with ID " + id + ", retry in 5 minutes", Toast.LENGTH_SHORT).show();
+                } else {
+                    prefs.edit().putInt("Get" + id, 0).apply();
+                }
+
 
                 Log.e("Gefunden", "Nein: " + error);
             }
