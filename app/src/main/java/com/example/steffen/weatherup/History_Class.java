@@ -200,6 +200,11 @@ public class History_Class extends ActionBarActivity {
         if (id == R.id.filter) {
             Intent intent = new Intent(c, Filter_Class.class);
             c.startActivity(intent);
+        }else if (id == R.id.graph) {
+            Intent intent = new Intent(c, GraphDrawer_Class.class);
+            intent.putExtra("cityFilter", prefs.getString("CityFilter", ""));
+            intent.putExtra("dateFilter", prefs.getString("DateFilter", ""));
+            c.startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

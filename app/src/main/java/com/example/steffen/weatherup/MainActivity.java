@@ -62,6 +62,8 @@ public class MainActivity extends ActionBarActivity {
                     c.startActivity(intent);
                 }else if (position == 5){
                     Intent intent = new Intent(c,GraphDrawer_Class.class);
+                    intent.putExtra("cityFilter", "");
+                    intent.putExtra("dateFilter", "");
                     c.startActivity(intent);
                 }else {
                     Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();

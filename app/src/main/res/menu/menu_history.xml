@@ -10,4 +10,10 @@
         app:showAsAction="always"
         android:icon="@drawable/filter"/>
 
+    <item android:id="@+id/graph"
+        android:title="Graph"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/graph_icon"/>
+
 </menu>
