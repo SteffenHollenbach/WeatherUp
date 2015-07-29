@@ -17,7 +17,7 @@
         android:icon="@drawable/graph_icon"/>
 
     <item android:id="@+id/delete"
-        android:title="Graph"
+        android:title="Delete everything"
         android:orderInCategory="100"
         app:showAsAction="never"
         android:icon="@drawable/trash"/>

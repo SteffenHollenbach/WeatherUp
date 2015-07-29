@@ -210,6 +210,8 @@ public class History_Class extends ActionBarActivity {
             realm.beginTransaction();
             realm.where(RetrofitToRealmAdapter.class).findAll().clear();
             realm.commitTransaction();
+            Toast.makeText(c, "Database cleared", Toast.LENGTH_SHORT).show();
+            finish();
             Intent intent = new Intent(c, History_Class.class);
             c.startActivity(intent);
         }
