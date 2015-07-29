@@ -44,7 +44,7 @@ public class ShowResult_Class extends ActionBarActivity {
             tv_temp_result.setText(wo.getMain().getTemp() + " °C");
             tv_weather_desc_result.setText(wo.getWeather().get(0).getDescription());
             tv_wind_speed_result.setText(wo.getWind().getSpeed() + " km/h");
-            tv_humidity_result.setText(wo.getMain().getHumidity() + " %");
+            tv_humidity_result.setText(wo.getMain().getHumidity() + " m");
         } else {
            tv_city_result.setText("Fehler");
         }

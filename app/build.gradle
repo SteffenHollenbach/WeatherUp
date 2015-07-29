@@ -25,4 +25,5 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'io.realm:realm-android:0.81.1'
+    compile group: 'org.achartengine', name: 'achartengine', version: '1.2.0'
 }

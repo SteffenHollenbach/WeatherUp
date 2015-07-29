@@ -29,6 +29,7 @@
         <activity android:name=".ShowResult_Class"  android:label="Result"/>
         <activity android:name=".History_Class"  android:label="History"/>
         <activity android:name=".AutoSave_Class"  android:label="Auto Save"/>
+        <activity android:name=".GraphDrawer_Class"  android:label="Graph"/>
 
         <service android:name=".SaveService">
             <intent-filter>
