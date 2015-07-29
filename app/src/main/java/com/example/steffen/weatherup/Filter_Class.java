@@ -13,7 +13,7 @@ import android.widget.EditText;
 public class Filter_Class extends ActionBarActivity {
 
     Context c;
-    Button btn_go;
+    Button btn_go, btn_reset;
     EditText et_city, et_date;
 
     @Override
@@ -23,6 +23,7 @@ public class Filter_Class extends ActionBarActivity {
 
         c = this;
         btn_go = (Button) findViewById(R.id.btn_go);
+        btn_reset = (Button) findViewById(R.id.btn_reset);
         et_city = (EditText) findViewById(R.id.et_city);
         et_date = (EditText) findViewById(R.id.et_date);
 
@@ -39,6 +40,18 @@ public class Filter_Class extends ActionBarActivity {
                 finish();
             }
         });
+
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                History_Class.prefs.edit().putString("CityFilter", "").apply();
+                History_Class.prefs.edit().putString("DateFilter", "").apply();
+
+                finish();
+            }
+        });
+
+
     }
 
 
