@@ -57,9 +57,15 @@ public class SaveService extends Service {
 
         // Unsere auszufuehrende Methode.
 
+        String s = prefs.getString("ServiceCities", "");
+        String[] separated = s.split(",");
 
-        getWeatherID("2922309", "metric");
+        Log.e("**********", "Tada? " + s);
 
+        for(int i = 0; i < separated.length; i++){
+            Log.e("**********", "Start with " + separated[i]);
+            getWeatherID(separated[i], "metric");
+        }
 
         // Nachdem unsere Methode abgearbeitet wurde, soll sich der Service
         // selbst stoppen.
@@ -86,9 +92,11 @@ public class SaveService extends Service {
             @Override
             public void success(WeatherObject wo, Response response) {
                 Log.i("Gefunden", "True");
-
-                wo = WeatherObject.checkNull(wo);
-                new History_Class().add(wo, c);
+                if(wo.getCod().equals("200")){
+                    Log.e("*********",wo.getCod());
+                    wo = WeatherObject.checkNull(wo);
+                    new History_Class().add(wo, c);
+                }
             }
 
             @Override

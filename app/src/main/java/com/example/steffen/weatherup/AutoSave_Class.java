@@ -15,7 +15,7 @@ import android.widget.CheckBox;
  */
 public class AutoSave_Class extends ActionBarActivity {
 
-    Button btn_start, btn_stop;
+    Button btn_start, btn_stop, btn_show, btn_reset;
     CheckBox cb_running;
     Context c;
     static SharedPreferences prefs;
@@ -27,6 +27,8 @@ public class AutoSave_Class extends ActionBarActivity {
 
         btn_start = (Button) findViewById(R.id.btn_start);
         btn_stop = (Button) findViewById(R.id.btn_stop);
+        btn_show = (Button) findViewById(R.id.btn_show);
+        btn_reset = (Button) findViewById(R.id.btn_reset);
         cb_running = (CheckBox) findViewById(R.id.cb_running);
         c = this;
 
@@ -60,7 +62,20 @@ public class AutoSave_Class extends ActionBarActivity {
             }
         });
 
+        btn_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(c, ShowServiceCities_Class.class);
+                c.startActivity(intent);
+            }
+        });
 
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prefs.edit().putString("ServiceCities", "").apply();
+            }
+        });
 
 
     }

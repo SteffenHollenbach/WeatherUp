@@ -31,6 +31,7 @@
         <activity android:name=".AutoSave_Class"  android:label="Auto Save"/>
         <activity android:name=".GraphDrawer_Class"  android:label="Graph"/>
         <activity android:name=".Filter_Class"  android:label="Filter"/>
+        <activity android:name=".ShowServiceCities_Class"  android:label="Service Cities"/>
 
         <service android:name=".SaveService">
             <intent-filter>

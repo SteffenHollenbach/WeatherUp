@@ -29,4 +29,20 @@
         android:layout_marginTop="37dp"
         android:checked="false"
         android:clickable="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Cities"
+        android:id="@+id/btn_show"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Cities"
+        android:id="@+id/btn_reset"
+        android:layout_above="@+id/btn_show"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

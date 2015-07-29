@@ -1,6 +1,7 @@
 package com.example.steffen.weatherup;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -15,11 +16,12 @@ import android.widget.Toast;
 public class ShowResult_Class extends ActionBarActivity {
 
     TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_pressure_result, tv_visibility_result;
-    Button btn_save, btn_refresh, btn_view;
+    Button btn_save, btn_service, btn_view;
     TableRow t6, t7;
     WeatherObject wo;
     Context c;
     Boolean basic = true;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class ShowResult_Class extends ActionBarActivity {
         c = this;
         wo = (WeatherObject) getIntent().getSerializableExtra("WeaterObject");
 
+        prefs = c.getSharedPreferences(
+                "Share", Context.MODE_PRIVATE);
 
         tv_city_result = (TextView) findViewById(R.id.tv_city_result);
         tv_temp_result = (TextView) findViewById(R.id.tv_temp_result);
@@ -38,6 +42,7 @@ public class ShowResult_Class extends ActionBarActivity {
 
         btn_save = (Button) findViewById(R.id.btn_save);
         btn_view = (Button) findViewById(R.id.btn_view);
+        btn_service = (Button) findViewById(R.id.btn_service);
 
         if(wo.getCod().equals("200")) {
             wo = WeatherObject.checkNull(wo);
@@ -50,6 +55,7 @@ public class ShowResult_Class extends ActionBarActivity {
         } else {
            tv_city_result.setText("Fehler");
            btn_save.setEnabled(false);
+           btn_service.setEnabled(false);
         }
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +68,7 @@ public class ShowResult_Class extends ActionBarActivity {
         btn_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(basic){
+                if(basic && wo.getCod().equals("200")){
                     basic = false;
 
                     t6 = (TableRow) findViewById(R.id.tableRow6);
@@ -82,11 +88,21 @@ public class ShowResult_Class extends ActionBarActivity {
                 }else if(basic == false){
                     basic = true;
 
-
                     t6.setVisibility(View.GONE);
                     t7.setVisibility(View.GONE);
 
                     Toast.makeText(c, "Basic",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btn_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(wo.getCod().equals("200")){
+                    String s = prefs.getString("ServiceCities", "");
+                    prefs.edit().putString("ServiceCities", s + wo.getId() + ",").apply();
+                    prefs.edit().putString(wo.getId()+"", wo.getName()).apply();
                 }
             }
         });

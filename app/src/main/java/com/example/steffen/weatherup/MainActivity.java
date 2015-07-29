@@ -2,6 +2,7 @@ package com.example.steffen.weatherup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -18,6 +19,7 @@ public class MainActivity extends ActionBarActivity {
 
     ListView lv_source;
     static Context c;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,9 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.select_source_layout);
 
         c = this;
+
+        prefs = c.getSharedPreferences(
+                "Share", Context.MODE_PRIVATE);
 
         setTitle("Select Source");
 
