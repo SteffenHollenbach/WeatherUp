@@ -2,8 +2,11 @@ package com.example.steffen.weatherup;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,25 +29,23 @@ public class History_Class extends ActionBarActivity {
     List<RetrofitToRealmAdapter> woList = new ArrayList<>();
     List<String> saved = new ArrayList<>();
     private ListView mListView;
+    static SharedPreferences prefs;
     Context c;
+    ArrayAdapter<String> arrayAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_source_layout);
+        setContentView(R.layout.history_layout);
 
         mListView = (ListView) findViewById(R.id.listview);
         c = this;
 
-        loadData();
+        prefs = c.getSharedPreferences(
+                "Share", Context.MODE_PRIVATE);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                saved);
-
-        mListView.setAdapter(arrayAdapter);
+        initialize();
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -76,7 +77,7 @@ public class History_Class extends ActionBarActivity {
                 realm.commitTransaction();
                 finish();
 
-                Toast.makeText(MainActivity.c, "Eintrag '"+s+"' entfernt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.c, "Data '"+s+"' removed", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(c, History_Class.class);
                 c.startActivity(intent);
@@ -89,8 +90,31 @@ public class History_Class extends ActionBarActivity {
 
     public void loadData() {
         Realm realm = Realm.getInstance(this);
-        RealmResults<RetrofitToRealmAdapter> query = realm.where(RetrofitToRealmAdapter.class)
-                .findAll();
+        RealmResults<RetrofitToRealmAdapter> query;
+
+        String cityFilter = prefs.getString("CityFilter", "");
+        String dateFilter = prefs.getString("DateFilter", "");
+        if (cityFilter.equals("") && dateFilter.equals("")) {
+            query = realm.where(RetrofitToRealmAdapter.class)
+                    .findAll();
+        }else if (!cityFilter.equals("") && dateFilter.equals("")){
+            query = realm.where(RetrofitToRealmAdapter.class)
+                    .equalTo("name", cityFilter)
+                    .findAll();
+        }else if (!dateFilter.equals("") && cityFilter.equals("")){
+            query = realm.where(RetrofitToRealmAdapter.class)
+                    .equalTo("date", dateFilter)
+                    .findAll();
+        }else{
+            query = realm.where(RetrofitToRealmAdapter.class)
+                    .equalTo("name", cityFilter)
+                    .equalTo("date", dateFilter)
+                    .findAll();
+        }
+
+        woList.clear();
+        saved.clear();
+
         for (RetrofitToRealmAdapter woA : query) {
             woList.add(woA);
             saved.add(woA.getName() + "," + woA.getDate()+ "," + woA.getTime());
@@ -160,6 +184,44 @@ public class History_Class extends ActionBarActivity {
         woList.add(woA);
         //mAdapter.notifyDataSetChanged();
         Toast.makeText(c, "weater-data saved", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_history, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.filter) {
+            Intent intent = new Intent(c, Filter_Class.class);
+            c.startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        initialize();
+
+    }
+
+    public void initialize(){
+        loadData();
+
+        arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                saved);
+
+        mListView.setAdapter(arrayAdapter);
     }
 
 

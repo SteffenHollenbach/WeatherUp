@@ -1,11 +1,11 @@
 package com.example.steffen.weatherup;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,7 +13,7 @@ import android.widget.CheckBox;
 /**
  * Created by Steffen on 27.07.2015.
  */
-public class AutoSave_Class extends Activity{
+public class AutoSave_Class extends ActionBarActivity {
 
     Button btn_start, btn_stop;
     CheckBox cb_running;

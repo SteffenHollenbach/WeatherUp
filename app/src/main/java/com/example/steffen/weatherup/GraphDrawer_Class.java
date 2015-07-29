@@ -43,7 +43,7 @@ public class GraphDrawer_Class extends ActionBarActivity{
         c = this;
 
         temp_series = new XYSeries("Temperature Gau-Algehseim");
-        temp_series.setTitle("Temprature");
+        temp_series.setTitle("Temperature Gau-Algehseim");
 
         loadData();
 
@@ -93,9 +93,7 @@ public class GraphDrawer_Class extends ActionBarActivity{
         mRenderer.setXTitle("Time");
         mRenderer.setYTitle("Temprature");
 
-        mRenderer.setAxisTitleTextSize(50);
-
-        XYMultipleSeriesDataset vv = new XYMultipleSeriesDataset();
+        mRenderer.setAxisTitleTextSize(40);
 
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         dataset.addSeries(temp_series);

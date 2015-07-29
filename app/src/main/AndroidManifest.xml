@@ -30,6 +30,7 @@
         <activity android:name=".History_Class"  android:label="History"/>
         <activity android:name=".AutoSave_Class"  android:label="Auto Save"/>
         <activity android:name=".GraphDrawer_Class"  android:label="Graph"/>
+        <activity android:name=".Filter_Class"  android:label="Filter"/>
 
         <service android:name=".SaveService">
             <intent-filter>
