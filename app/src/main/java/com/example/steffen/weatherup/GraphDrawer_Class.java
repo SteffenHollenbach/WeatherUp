@@ -109,10 +109,28 @@ public class GraphDrawer_Class extends ActionBarActivity{
         mRenderer.setYAxisMin(0);
         mRenderer.setShowGrid(true); // we show the grid
 
+        mRenderer.setChartTitle("Temprature Overview");
         mRenderer.setXTitle("Time");
         mRenderer.setYTitle("Temprature");
 
-        mRenderer.setAxisTitleTextSize(40);
+        mRenderer.setAxisTitleTextSize(30);
+        mRenderer.setLegendTextSize(30);
+        mRenderer.setLabelsTextSize(20);
+        mRenderer.setChartTitleTextSize(40);
+
+        mRenderer.setGridColor(Color.GRAY);
+        mRenderer.setLabelsColor(Color.BLACK);
+
+        mRenderer.setMargins(new int[] { 50, 50, 200, 22 });
+        mRenderer.setFitLegend(true);
+
+        //mRenderer.setZoomEnabled(true, false);
+
+        mRenderer.setPanEnabled(true, true);
+        mRenderer.setClickEnabled(false);
+
+
+
 
 
 
@@ -193,7 +211,7 @@ public class GraphDrawer_Class extends ActionBarActivity{
 
 
     public void createXYSeriesPart2(List<RetrofitToRealmAdapter> woList2){
-        XYSeries temp_series = new XYSeries("Tempreature " + woList2.get(0).getName());
+        XYSeries temp_series = new XYSeries("Temprature " + woList2.get(0).getName());
         int hour = 0;
 
         for(RetrofitToRealmAdapter woA : woList2){
