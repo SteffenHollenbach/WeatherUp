@@ -205,6 +205,13 @@ public class History_Class extends ActionBarActivity {
             intent.putExtra("cityFilter", prefs.getString("CityFilter", ""));
             intent.putExtra("dateFilter", prefs.getString("DateFilter", ""));
             c.startActivity(intent);
+        }else if (id == R.id.delete) {
+            Realm realm = Realm.getInstance(c);
+            realm.beginTransaction();
+            realm.where(RetrofitToRealmAdapter.class).findAll().clear();
+            realm.commitTransaction();
+            Intent intent = new Intent(c, History_Class.class);
+            c.startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
