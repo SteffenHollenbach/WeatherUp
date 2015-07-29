@@ -1,10 +1,14 @@
 package com.example.steffen.weatherup;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.text.format.DateUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -81,6 +85,18 @@ public class SaveService extends Service {
 
             @Override
             public void failure(RetrofitError error) {
+
+                Intent saveServiceIntent = new Intent(c, SaveService.class);
+                PendingIntent saveServicePendingIntent =
+                        PendingIntent.getService(c, 0, saveServiceIntent, 0);
+                AlarmManager am = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+
+                //Wie gross soll der Intervall sein?
+                long interval = DateUtils.MINUTE_IN_MILLIS * 5; // Alle 5 Minuten
+
+                am.set(AlarmManager.RTC, System.currentTimeMillis()+interval, saveServicePendingIntent);
+                Toast.makeText(c, "Can't save weater-data, retry in 5 minutes", Toast.LENGTH_SHORT).show();
+
                 Log.e("Gefunden", "Nein: " + error);
             }
         });

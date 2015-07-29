@@ -159,7 +159,7 @@ public class History_Class extends ActionBarActivity {
         realm.commitTransaction();
         woList.add(woA);
         //mAdapter.notifyDataSetChanged();
-        Toast.makeText(c, "Saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(c, "weater-data saved", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -33,7 +33,7 @@ public class SaveReciever extends BroadcastReceiver {
             Toast.makeText(context, "Recieved (Start)", Toast.LENGTH_SHORT).show();
 
             //Wie gross soll der Intervall sein?
-            long interval = DateUtils.SECOND_IN_MILLIS * 10; // Alle 10 Sekunden
+            long interval = DateUtils.MINUTE_IN_MILLIS * 5; // Alle 5 Minuten
 
             //Wann soll der Service das erste Mal gestartet werden?
             long firstStart = System.currentTimeMillis();
