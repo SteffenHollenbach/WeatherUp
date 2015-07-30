@@ -78,6 +78,6 @@ public class ShowServiceCities_Class extends ActionBarActivity {
         });
 
 
-        //TODO Jede Stadt nur einmal
+
     }
 }

@@ -101,6 +101,7 @@ public class ShowResult_Class extends ActionBarActivity {
             public void onClick(View v) {
                 if(wo.getCod().equals("200")){
                     String s = prefs.getString("ServiceCities", "");
+                    s = s.replace(wo.getId()+",", "");
                     prefs.edit().putString("ServiceCities", s + wo.getId() + ",").apply();
                     prefs.edit().putString(wo.getId()+"", wo.getName()).apply();
                 }
