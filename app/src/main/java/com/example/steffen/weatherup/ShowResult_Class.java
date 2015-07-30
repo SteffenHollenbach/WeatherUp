@@ -13,12 +13,15 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Steffen on 26.07.2015.
  */
 public class ShowResult_Class extends ActionBarActivity {
 
-    TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_pressure_result, tv_visibility_result;
+    TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_pressure_result, tv_visibility_result, tv_time, tv_date;
     Button btn_save, btn_service, btn_view;
     TableRow t6, t7;
     WeatherObject wo;
@@ -42,6 +45,8 @@ public class ShowResult_Class extends ActionBarActivity {
         tv_weather_desc_result = (TextView) findViewById(R.id.tv_weather_desc_result);
         tv_wind_speed_result = (TextView) findViewById(R.id.tv_wind_speed_result);
         tv_humidity_result = (TextView) findViewById(R.id.tv_humidity_result);
+        tv_time = (TextView) findViewById(R.id.tv_time);
+        tv_date = (TextView) findViewById(R.id.tv_date);
 
         btn_save = (Button) findViewById(R.id.btn_save);
         btn_view = (Button) findViewById(R.id.btn_view);
@@ -54,7 +59,23 @@ public class ShowResult_Class extends ActionBarActivity {
             tv_temp_result.setText(wo.getMain().getTemp() + " °C");
             tv_weather_desc_result.setText(wo.getWeather().get(0).getDescription());
             tv_wind_speed_result.setText(wo.getWind().getSpeed() + " km/h");
-            tv_humidity_result.setText(wo.getMain().getHumidity() + " m");
+            tv_humidity_result.setText(wo.getMain().getHumidity() + " %");
+
+            SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+            SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
+
+            if(wo.getDate().equals("Unkown")){
+                tv_date.setText(date.format(new Date()));
+            } else {
+                tv_date.setText(wo.getDate());
+            }
+
+            if(wo.getTime().equals("Unkown")){
+                tv_time.setText(time.format(new Date()));
+            }else{
+                tv_time.setText(wo.getTime());
+            }
+
         } else {
            tv_city_result.setText("Fehler");
            btn_save.setEnabled(false);
@@ -84,7 +105,7 @@ public class ShowResult_Class extends ActionBarActivity {
                     tv_visibility_result = (TextView) findViewById(R.id.tv_visibility_result);
 
                     tv_pressure_result.setText(wo.getMain().getPressure() + " hPa");
-                    tv_visibility_result.setText(wo.getVisibility() + " % ");
+                    tv_visibility_result.setText(wo.getVisibility() + " m");
 
                     Toast.makeText(c, "Extended",Toast.LENGTH_SHORT).show();
 

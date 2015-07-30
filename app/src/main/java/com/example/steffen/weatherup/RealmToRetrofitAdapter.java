@@ -23,6 +23,8 @@ public class RealmToRetrofitAdapter {
         WeatherObject.Sys sys = new WeatherObject.Sys(woA.getType(), woA.getId(), woA.getMessage(), woA.getCountry(), woA.getSunrise(), woA.getSunset());
 
         wo = new WeatherObject(coord, weatherList, main, wind, clouds, sys, woA.getBase(), woA.getVisibility(), woA.getDt(), woA.getId(), woA.getName(), woA.getCod());
+        wo.setTime(woA.getTime());
+        wo.setDate(woA.getDate());
 
     }
 

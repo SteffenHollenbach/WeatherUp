@@ -293,6 +293,9 @@ public class WeatherObject implements Serializable {
     @Expose
     private String cod;
 
+    private String date;
+    private String time;
+
     public Coord getCoord() {
         return coord;
     }
@@ -392,7 +395,23 @@ public class WeatherObject implements Serializable {
     public String toString(){
         return getName();
     }
-    
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public static WeatherObject checkNull(WeatherObject wo){
         if(wo.getCoord().getLon() == null){wo.getCoord().setLon("Unkown");}
         if(wo.getCoord().getLat() == null){wo.getCoord().setLat("Unkown");}
@@ -420,6 +439,8 @@ public class WeatherObject implements Serializable {
         if(wo.getId() == null){wo.setId("Unkown");}
         if(wo.getName() == null){wo.setName("Unkown");}
         if(wo.getCod() == null){wo.setCod("Unkown");}
+        if(wo.getTime() == null){wo.setTime("Unkown");}
+        if(wo.getDate() == null){wo.setDate("Unkown");}
         
         
         

@@ -27,10 +27,12 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_result"
-        android:layout_above="@+id/btn_get"
         android:background="#31ffffff"
-        android:layout_weight="2">
+        android:layout_weight="2"
+        android:layout_below="@+id/tv_date"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/scrollView">
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -205,5 +207,25 @@
         android:id="@+id/btn_save"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="DD.MM.YYYY"
+        android:id="@+id/tv_date"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="HH:MM:SS"
+        android:id="@+id/tv_time"
+        android:layout_above="@+id/scrollView"
+        android:layout_alignRight="@+id/btn_view"
+        android:layout_alignEnd="@+id/btn_view" />
 
 </RelativeLayout>
