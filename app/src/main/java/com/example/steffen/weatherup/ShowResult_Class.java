@@ -104,6 +104,7 @@ public class ShowResult_Class extends ActionBarActivity {
                     s = s.replace(wo.getId()+",", "");
                     prefs.edit().putString("ServiceCities", s + wo.getId() + ",").apply();
                     prefs.edit().putString(wo.getId()+"", wo.getName()).apply();
+                    Toast.makeText(MainActivity.c, wo.getName() + " added to service", Toast.LENGTH_SHORT).show();
                 }
             }
         });
