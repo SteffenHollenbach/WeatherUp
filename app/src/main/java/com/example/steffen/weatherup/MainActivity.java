@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
         setTitle("Select Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
-        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "History", "Service-Settings", "Graph"};
+        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "Name", "History", "Service-Settings", "Graph"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < sources.length; ++i) {
@@ -60,12 +60,15 @@ public class MainActivity extends ActionBarActivity {
                     Intent intent = new Intent(c, SearchByID_Class.class);
                     c.startActivity(intent);
                 }else if (position == 3){
-                    Intent intent = new Intent(c, History_Class.class);
+                    Intent intent = new Intent(c, SearchByName_Class.class);
                     c.startActivity(intent);
                 }else if (position == 4){
-                    Intent intent = new Intent(c, AutoSave_Class.class);
+                    Intent intent = new Intent(c, History_Class.class);
                     c.startActivity(intent);
                 }else if (position == 5){
+                    Intent intent = new Intent(c, AutoSave_Class.class);
+                    c.startActivity(intent);
+                }else if (position == 6){
                     Intent intent = new Intent(c,GraphDrawer_Class.class);
                     intent.putExtra("cityFilter", "");
                     intent.putExtra("dateFilter", "");
