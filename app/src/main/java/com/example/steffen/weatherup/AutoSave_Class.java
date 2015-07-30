@@ -70,12 +70,12 @@ public class AutoSave_Class extends ActionBarActivity {
             }
         });
 
-        btn_reset.setOnClickListener(new View.OnClickListener() {
+       /* btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 prefs.edit().putString("ServiceCities", "").apply();
             }
-        });
+        });*/
 
 
     }

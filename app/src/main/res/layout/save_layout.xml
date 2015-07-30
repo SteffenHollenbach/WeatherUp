@@ -44,5 +44,6 @@
         android:text="Reset Cities"
         android:id="@+id/btn_reset"
         android:layout_above="@+id/btn_show"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:enabled="false" />
 </RelativeLayout>

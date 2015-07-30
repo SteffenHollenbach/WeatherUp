@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -79,5 +81,30 @@ public class ShowServiceCities_Class extends ActionBarActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_history, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.delete) {
+            prefs.edit().putString("ServiceCities", "").apply();
+            Toast.makeText(MainActivity.c, "All cities removed", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(c, ShowServiceCities_Class.class);
+            c.startActivity(intent);
+
+            finish();
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
