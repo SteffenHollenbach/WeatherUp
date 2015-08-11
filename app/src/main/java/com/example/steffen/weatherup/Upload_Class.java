@@ -1,6 +1,7 @@
 package com.example.steffen.weatherup;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,7 +9,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,11 +40,13 @@ public class Upload_Class extends Activity{
     List<RetrofitToRealmAdapter> woList = new ArrayList<>();
     //List<XYSeries> seriesList = new ArrayList<>();
     String dateFilter, cityFilter;
-    TextView tv_status, tv_finish;
+    TextView tv_status, tv_status2, tv_finish;
     ImageView iv_check;
-    ProgressBar pb_upload;
-    int error = 0, all= 0;
+    SeekBar sb_progress;
+    int error = 0, all = 0, duplicate = 0, allInAll;
+    Context c;
 
+    UploadOperation uo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +58,12 @@ public class Upload_Class extends Activity{
         dateFilter = intent.getStringExtra("dateFilter");
 
         tv_status = (TextView) findViewById(R.id.tv_status);
+        tv_status2 = (TextView) findViewById(R.id.tv_status2);
         tv_finish = (TextView) findViewById(R.id.tv_finish);
         iv_check = (ImageView) findViewById(R.id.iv_check);
-        pb_upload = (ProgressBar) findViewById(R.id.pb_upload);
+        sb_progress = (SeekBar) findViewById(R.id.sb_progress);
+
+        c = this;
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -65,7 +71,9 @@ public class Upload_Class extends Activity{
         }
 
         //static UploadOperation UO = new UploadOperation();
-        new UploadOperation().execute();
+
+        uo = new UploadOperation();
+        uo.execute();
 
     }
 
@@ -99,6 +107,9 @@ public class Upload_Class extends Activity{
 
         woList.clear();
 
+        allInAll = query.size();
+        sb_progress.setMax(allInAll);
+
         for (RetrofitToRealmAdapter woA : query) {
             woList.add(woA);
             //saved.add(woA.getName() + "," + woA.getDate()+ "," + woA.getTime());
@@ -111,56 +122,6 @@ public class Upload_Class extends Activity{
         }
     }
 
-    public void sortData(){
-        Map<String, String> cityMap = new HashMap<String, String>();
-        //seriesList.clear();
-
-        for (RetrofitToRealmAdapter woA : woList) {
-            cityMap.put(woA.getName(), woA.getName());
-        }
-
-        Log.e("******", "CityMap-Size create: " + cityMap.size());
-
-        for(String key : cityMap.values()) {
-
-            Log.e("******", "Key: " + key);
-
-            Realm realm = Realm.getInstance(this);
-            RealmResults<RetrofitToRealmAdapter> query;
-
-            if (!dateFilter.equals("")) {
-                query = realm.where(RetrofitToRealmAdapter.class)
-                        .equalTo("date", dateFilter)
-                        .equalTo("name", key)
-                        .findAll();
-            } else {
-                query = realm.where(RetrofitToRealmAdapter.class)
-                        .equalTo("name", key)
-                        .findAll();
-            }
-
-            Log.e("******", "Query-Size create: " + query.size());
-
-            List<RetrofitToRealmAdapter> woList2 = new ArrayList<>();
-
-            for (RetrofitToRealmAdapter woA : query) {
-                woList2.add(woA);
-            }
-
-            if (woList2.size() != 0) {
-                Log.e("******", "Create Table: " + woList2.get(0).getName());
-                createOnlineTable(woList2.get(0).getName(), woList2.get(0).getId());
-
-                for (RetrofitToRealmAdapter woA2 : woList2) {
-                    Log.e("******", "Send Data: ");
-                    sendData(woA2);
-                }
-
-            }
-        }
-
-
-    }
 
     public boolean createOnlineTable(String CityName, String CityId){
 
@@ -195,53 +156,16 @@ public class Upload_Class extends Activity{
         return true;
     }
 
-    public boolean sendData(RetrofitToRealmAdapter woA2){ //Daten des Objektes an den Server übertragen
-        all++;
 
-        // Create a new HttpClient and Post Header
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://192.168.178.53/ownstuff/insertEntry.php");
-
-        String CityName =  woA2.getName();
-        CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
-
-        try {
-
-            // Add your data
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
-            nameValuePairs.add(new BasicNameValuePair("CityName", CityName));
-            nameValuePairs.add(new BasicNameValuePair("CityID", woA2.getId()));
-            nameValuePairs.add(new BasicNameValuePair("Date", woA2.getDate()));
-            nameValuePairs.add(new BasicNameValuePair("Time", woA2.getTime()));
-            nameValuePairs.add(new BasicNameValuePair("Tempreature", woA2.getTemp()));
-            nameValuePairs.add(new BasicNameValuePair("Weather", woA2.getDescription()));
-
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-            // Execute HTTP Post Request
-            ResponseHandler<String> resonseHandler = new BasicResponseHandler();
-            String response = httpclient.execute(httppost, resonseHandler);
-            Log.e("******", response);
-            if (response.toLowerCase().contains("error")){
-                error++;
-            }
-            System.out.println("Uploaded: Entry " + woA2.getName() + ", " + woA2.getDate()+ ", " + woA2.getTime());
-
-
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-        }
-        return true;
-    }
-
-    private class UploadOperation extends AsyncTask<String, Void, String> {
+    private class UploadOperation extends AsyncTask<String, Integer, String> {
+        @Override
+        protected void onPreExecute() {}
 
         @Override
         protected String doInBackground(String... params) {
 
             loadData(cityFilter, dateFilter);
+            publishProgress();
             sortData();
 
             return "Executed";
@@ -251,19 +175,122 @@ public class Upload_Class extends Activity{
         protected void onPostExecute(String result) {
 
             tv_status.setVisibility(View.INVISIBLE);
-            pb_upload.setVisibility(View.INVISIBLE);
+            tv_status2.setVisibility(View.INVISIBLE);
+            sb_progress.setVisibility(View.INVISIBLE);
             tv_finish.setVisibility(View.VISIBLE);
             iv_check.setVisibility(View.VISIBLE);
 
-            tv_finish.setText("Upload finished, " + all + " values sent, " + error + " had errors.");
+            tv_finish.setText("Upload finished, " + all + " values sent, " + error + " had errors (" + duplicate + " are duplicate errors).");
 
         }
 
         @Override
-        protected void onPreExecute() {}
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(all);
+            sb_progress.setProgress(all);
+            tv_status2.setText(all + " / " + allInAll);
+        }
 
-        @Override
-        protected void onProgressUpdate(Void... values) {}
+        public void sortData(){
+            Map<String, String> cityMap = new HashMap<String, String>();
+            //seriesList.clear();
+
+            for (RetrofitToRealmAdapter woA : woList) {
+                cityMap.put(woA.getName(), woA.getName());
+            }
+
+            Log.e("******", "CityMap-Size create: " + cityMap.size());
+
+            for(String key : cityMap.values()) {
+
+                Log.e("******", "Key: " + key);
+
+                Realm realm = Realm.getInstance(c);
+                RealmResults<RetrofitToRealmAdapter> query;
+
+                if (!dateFilter.equals("")) {
+                    query = realm.where(RetrofitToRealmAdapter.class)
+                            .equalTo("date", dateFilter)
+                            .equalTo("name", key)
+                            .findAll();
+                } else {
+                    query = realm.where(RetrofitToRealmAdapter.class)
+                            .equalTo("name", key)
+                            .findAll();
+                }
+
+                Log.e("******", "Query-Size create: " + query.size());
+
+                List<RetrofitToRealmAdapter> woList2 = new ArrayList<>();
+
+                for (RetrofitToRealmAdapter woA : query) {
+                    woList2.add(woA);
+                }
+
+                if (woList2.size() != 0) {
+                    Log.e("******", "Create Table: " + woList2.get(0).getName());
+                    createOnlineTable(woList2.get(0).getName(), woList2.get(0).getId());
+
+                    for (RetrofitToRealmAdapter woA2 : woList2) {
+                        Log.e("******", "Send Data: ");
+                        sendData(woA2);
+                    }
+
+                }
+            }
+
+
+        }
+
+        public boolean sendData(RetrofitToRealmAdapter woA2){ //Daten des Objektes an den Server übertragen
+
+
+            // Create a new HttpClient and Post Header
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://192.168.178.53/ownstuff/insertEntry.php");
+
+            String CityName =  woA2.getName();
+            CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
+
+            try {
+
+                // Add your data
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+                nameValuePairs.add(new BasicNameValuePair("CityName", CityName));
+                nameValuePairs.add(new BasicNameValuePair("CityID", woA2.getId()));
+                nameValuePairs.add(new BasicNameValuePair("Date", woA2.getDate()));
+                nameValuePairs.add(new BasicNameValuePair("Time", woA2.getTime()));
+                nameValuePairs.add(new BasicNameValuePair("Tempreature", woA2.getTemp()));
+                nameValuePairs.add(new BasicNameValuePair("Weather", woA2.getDescription()));
+
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                // Execute HTTP Post Request
+                ResponseHandler<String> resonseHandler = new BasicResponseHandler();
+                String response = httpclient.execute(httppost, resonseHandler);
+                Log.e("******", response);
+                if (response.toLowerCase().contains("error")){
+                    error++;
+                }
+                if (response.toLowerCase().contains("duplicate")){
+                    duplicate++;
+                }
+                all++;
+                publishProgress();
+
+                System.out.println("Uploaded: Entry " + woA2.getName() + ", " + woA2.getDate()+ ", " + woA2.getTime());
+
+
+            } catch (ClientProtocolException e) {
+                // TODO Auto-generated catch block
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+            }
+            return true;
+        }
+
+
+
     }
 
 
