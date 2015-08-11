@@ -2,12 +2,16 @@ package com.example.steffen.weatherup;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import org.achartengine.model.XYSeries;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -33,8 +37,12 @@ import io.realm.RealmResults;
 public class Upload_Class extends Activity{
 
     List<RetrofitToRealmAdapter> woList = new ArrayList<>();
-    List<XYSeries> seriesList = new ArrayList<>();
+    //List<XYSeries> seriesList = new ArrayList<>();
     String dateFilter, cityFilter;
+    TextView tv_status, tv_finish;
+    ImageView iv_check;
+    ProgressBar pb_upload;
+    int error = 0, all= 0;
 
 
     @Override
@@ -46,13 +54,18 @@ public class Upload_Class extends Activity{
         cityFilter = intent.getStringExtra("cityFilter");
         dateFilter = intent.getStringExtra("dateFilter");
 
+        tv_status = (TextView) findViewById(R.id.tv_status);
+        tv_finish = (TextView) findViewById(R.id.tv_finish);
+        iv_check = (ImageView) findViewById(R.id.iv_check);
+        pb_upload = (ProgressBar) findViewById(R.id.pb_upload);
+
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
-        loadData(cityFilter, dateFilter);
-        sortData();
+        //static UploadOperation UO = new UploadOperation();
+        new UploadOperation().execute();
 
     }
 
@@ -100,7 +113,7 @@ public class Upload_Class extends Activity{
 
     public void sortData(){
         Map<String, String> cityMap = new HashMap<String, String>();
-        seriesList.clear();
+        //seriesList.clear();
 
         for (RetrofitToRealmAdapter woA : woList) {
             cityMap.put(woA.getName(), woA.getName());
@@ -154,7 +167,7 @@ public class Upload_Class extends Activity{
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://192.168.178.53/ownstuff/createTable.php");
 
-        CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä","ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
+        CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
 
         try {
 
@@ -183,14 +196,14 @@ public class Upload_Class extends Activity{
     }
 
     public boolean sendData(RetrofitToRealmAdapter woA2){ //Daten des Objektes an den Server übertragen
-
+        all++;
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://192.168.178.53/ownstuff/insertEntry.php");
 
         String CityName =  woA2.getName();
-        CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä","ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
+        CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
 
         try {
 
@@ -209,6 +222,9 @@ public class Upload_Class extends Activity{
             ResponseHandler<String> resonseHandler = new BasicResponseHandler();
             String response = httpclient.execute(httppost, resonseHandler);
             Log.e("******", response);
+            if (response.toLowerCase().contains("error")){
+                error++;
+            }
             System.out.println("Uploaded: Entry " + woA2.getName() + ", " + woA2.getDate()+ ", " + woA2.getTime());
 
 
@@ -218,6 +234,36 @@ public class Upload_Class extends Activity{
             // TODO Auto-generated catch block
         }
         return true;
+    }
+
+    private class UploadOperation extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            loadData(cityFilter, dateFilter);
+            sortData();
+
+            return "Executed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            tv_status.setVisibility(View.INVISIBLE);
+            pb_upload.setVisibility(View.INVISIBLE);
+            tv_finish.setVisibility(View.VISIBLE);
+            iv_check.setVisibility(View.VISIBLE);
+
+            tv_finish.setText("Upload finished, " + all + " values sent, " + error + " had errors.");
+
+        }
+
+        @Override
+        protected void onPreExecute() {}
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
     }
 
 
