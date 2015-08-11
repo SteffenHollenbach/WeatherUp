@@ -33,6 +33,7 @@
         <activity android:name=".GraphDrawer_Class"  android:label="Graph"/>
         <activity android:name=".Filter_Class"  android:label="Filter"/>
         <activity android:name=".ShowServiceCities_Class"  android:label="Service Cities"/>
+        <activity android:name=".Upload_Class"  android:label="Upload Data"/>
 
         <service android:name=".SaveService">
             <intent-filter>

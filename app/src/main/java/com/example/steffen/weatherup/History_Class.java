@@ -214,6 +214,11 @@ public class History_Class extends ActionBarActivity {
             finish();
             Intent intent = new Intent(c, History_Class.class);
             c.startActivity(intent);
+        }else if (id == R.id.upload) {
+            Intent intent = new Intent(c, Upload_Class.class);
+            intent.putExtra("cityFilter", prefs.getString("CityFilter", ""));
+            intent.putExtra("dateFilter", prefs.getString("DateFilter", ""));
+            c.startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -237,6 +242,7 @@ public class History_Class extends ActionBarActivity {
 
         mListView.setAdapter(arrayAdapter);
     }
+
 
 
 

@@ -129,11 +129,6 @@ public class GraphDrawer_Class extends ActionBarActivity{
         mRenderer.setPanEnabled(true, true);
         mRenderer.setClickEnabled(false);
 
-
-
-
-
-
         XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
 
         for(XYSeries xy : seriesList){
