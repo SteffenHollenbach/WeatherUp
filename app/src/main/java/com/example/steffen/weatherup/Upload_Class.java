@@ -1,7 +1,9 @@
 package com.example.steffen.weatherup;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -45,6 +47,7 @@ public class Upload_Class extends Activity{
     SeekBar sb_progress;
     int error = 0, all = 0, duplicate = 0, allInAll;
     Context c;
+    boolean running = true;
 
     UploadOperation uo;
 
@@ -126,7 +129,7 @@ public class Upload_Class extends Activity{
     public boolean createOnlineTable(String CityName, String CityId){
 
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://192.168.178.53/ownstuff/createTable.php");
+        HttpPost httppost = new HttpPost("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/createTable.php");
 
         CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
 
@@ -147,13 +150,38 @@ public class Upload_Class extends Activity{
 
 
         } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
+            //tv_status.setText("Server unreachable");
+            //sb_progress.setVisibility(View.INVISIBLE);
             Log.e("******", "Caught ClientProtocolException: " + e.getMessage());
+
+            running = false;
+
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            //tv_status.setText("IO Exception");
+            //sb_progress.setVisibility(View.INVISIBLE);
             Log.e("******", "Caught IOException: " + e.getMessage());
+
+            running = false;
+
+            //TODO info für benutzer
         }
         return true;
+    }
+
+    void createDialog(){
+
+        running = false;
+
+        new AlertDialog.Builder(c)
+                .setTitle("Error")
+                .setMessage("Server Unreachable")
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).create().show();
     }
 
 
@@ -177,10 +205,16 @@ public class Upload_Class extends Activity{
             tv_status.setVisibility(View.INVISIBLE);
             tv_status2.setVisibility(View.INVISIBLE);
             sb_progress.setVisibility(View.INVISIBLE);
-            tv_finish.setVisibility(View.VISIBLE);
-            iv_check.setVisibility(View.VISIBLE);
 
-            tv_finish.setText("Upload finished, " + all + " values sent, " + error + " had errors (" + duplicate + " are duplicate errors).");
+            if(running == false){
+                createDialog();
+            } else {
+                tv_finish.setVisibility(View.VISIBLE);
+                iv_check.setVisibility(View.VISIBLE);
+                tv_finish.setText("Upload finished, " + all + " values sent, " + error + " had errors (" + duplicate + " are duplicate errors).");
+            }
+
+
 
         }
 
@@ -233,7 +267,9 @@ public class Upload_Class extends Activity{
 
                     for (RetrofitToRealmAdapter woA2 : woList2) {
                         Log.e("******", "Send Data: ");
-                        sendData(woA2);
+                        if (running == true){
+                            sendData(woA2);
+                        }
                     }
 
                 }
@@ -247,7 +283,7 @@ public class Upload_Class extends Activity{
 
             // Create a new HttpClient and Post Header
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://192.168.178.53/ownstuff/insertEntry.php");
+            HttpPost httppost = new HttpPost("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/insertEntry.php");
 
             String CityName =  woA2.getName();
             CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
@@ -283,8 +319,11 @@ public class Upload_Class extends Activity{
 
             } catch (ClientProtocolException e) {
                 // TODO Auto-generated catch block
+                //tv_status.setText("Server unreachable");
+                //sb_progress.setVisibility(View.INVISIBLE);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+                //tv_status.setText("IO Exception");
+                //sb_progress.setVisibility(View.INVISIBLE);
             }
             return true;
         }
