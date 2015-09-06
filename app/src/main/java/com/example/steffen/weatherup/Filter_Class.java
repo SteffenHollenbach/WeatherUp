@@ -34,7 +34,7 @@ public class Filter_Class extends ActionBarActivity {
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                History_Class.prefs.edit().putString("CityFilter", et_city.getText().toString()).apply();
+                History_Class.prefs.edit().putString("CityFilter", et_city.getText().toString().replace(" ", "").replace("-", "").replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("Ü", "Ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("ß", "ss")).apply();
                 History_Class.prefs.edit().putString("DateFilter", et_date.getText().toString().replace(" ","")).apply();
 
                 finish();

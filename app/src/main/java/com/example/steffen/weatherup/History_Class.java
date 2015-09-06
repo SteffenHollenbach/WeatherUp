@@ -200,6 +200,7 @@ public class History_Class extends ActionBarActivity {
             Toast.makeText(c, "weather-data saved", Toast.LENGTH_SHORT).show();
         } catch (Exception e){
             createDialog(c);
+            realm.cancelTransaction();
         }
 
     }

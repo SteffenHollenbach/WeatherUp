@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -32,6 +31,7 @@ import java.util.Map;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import is.arontibo.library.ElasticDownloadView;
 
 /**
  * Created by Steffen on 11.08.2015.
@@ -50,20 +50,25 @@ public class Upload_Class extends Activity{
 
     UploadOperation uo;
 
+    ElasticDownloadView mElasticDownloadView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.upload_layout);
+        setContentView(R.layout.new_upload_layout);
 
         Intent intent = getIntent();
         cityFilter = intent.getStringExtra("cityFilter");
         dateFilter = intent.getStringExtra("dateFilter");
 
-        tv_status = (TextView) findViewById(R.id.tv_status);
-        tv_status2 = (TextView) findViewById(R.id.tv_status2);
-        tv_finish = (TextView) findViewById(R.id.tv_finish);
+        //tv_status = (TextView) findViewById(R.id.tv_status);
+        //tv_status2 = (TextView) findViewById(R.id.tv_status2);
+        /*tv_finish = (TextView) findViewById(R.id.tv_finish);
         iv_check = (ImageView) findViewById(R.id.iv_check);
-        sb_progress = (SeekBar) findViewById(R.id.sb_progress);
+        sb_progress = (SeekBar) findViewById(R.id.sb_progress);*/
+        mElasticDownloadView = (ElasticDownloadView) findViewById(R.id.elastic_download_view);
+        mElasticDownloadView.startIntro();
 
         c = this;
 
@@ -71,8 +76,6 @@ public class Upload_Class extends Activity{
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
-        //static UploadOperation UO = new UploadOperation();
 
         uo = new UploadOperation();
         uo.execute();
@@ -110,11 +113,11 @@ public class Upload_Class extends Activity{
         woList.clear();
 
         allInAll = query.size();
-        sb_progress.setMax(allInAll);
+        //sb_progress.setMax(allInAll);
 
         for (RetrofitToRealmAdapter woA : query) {
             woList.add(woA);
-            //saved.add(woA.getName() + "," + woA.getDate()+ "," + woA.getTime());
+
         }
 
         Log.e("******", "WoList-Size: " + query.size());
@@ -168,18 +171,23 @@ public class Upload_Class extends Activity{
         return true;
     }
 
-    void createDialog(){
+    void createDialog(String title, String text, final int afterClick){ // 0 = finish(), 1 = close dialog
 
         running = false;
 
         new AlertDialog.Builder(c)
-                .setTitle("Error")
-                .setMessage("Server Unreachable")
+                .setTitle(title)
+                .setMessage(text)
                 .setCancelable(false)
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        if (afterClick == 0) {
+                            finish();
+                        } else if (afterClick == 1) {
+
+                        }
+
                     }
                 }).create().show();
     }
@@ -202,17 +210,27 @@ public class Upload_Class extends Activity{
         @Override
         protected void onPostExecute(String result) {
 
-            tv_status.setVisibility(View.INVISIBLE);
-            tv_status2.setVisibility(View.INVISIBLE);
-            sb_progress.setVisibility(View.INVISIBLE);
+            //tv_status.setVisibility(View.INVISIBLE);
+            //tv_status2.setVisibility(View.INVISIBLE);
+            //sb_progress.setVisibility(View.INVISIBLE);*/
 
             if(running == false){
-                createDialog();
+
+                mElasticDownloadView.fail();
+                createDialog("Error", "Server Unreachable", 1);
             } else {
-                tv_finish.setVisibility(View.VISIBLE);
-                iv_check.setVisibility(View.VISIBLE);
-                tv_finish.setText("Upload finished, " + all + " values sent, " + error + " had errors (" + duplicate + " are duplicate errors).");
+                //tv_finish.setVisibility(View.VISIBLE);
+                //iv_check.setVisibility(View.VISIBLE);
+                mElasticDownloadView.success();
+                Log.e("***FINISHED***", "---------------------------------------------------------");
+
+                if (error - duplicate > 0) {
+                    //tv_status2.setText("Upload finished, " + all + " values sent, " + error + " had errors (" + duplicate + " are duplicate errors).");
+                    createDialog("Upload finished", all + " values sent, " + error + " had errors (" + duplicate + " are duplicate errors)", 1);
+                }
+
             }
+
 
 
 
@@ -221,13 +239,19 @@ public class Upload_Class extends Activity{
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(all);
-            sb_progress.setProgress(all);
-            tv_status2.setText(all + " / " + allInAll);
+            //sb_progress.setProgress(all);
+
+            //tv_status2.setText(all + " / " + allInAll);
+
+            int prog = (int)((float) 100/allInAll*all);
+
+            mElasticDownloadView.setProgress(prog);
+            Log.e("***PROGRESS***",prog+"");
         }
 
         public void sortData(){
             Map<String, String> cityMap = new HashMap<String, String>();
-            //seriesList.clear();
+
 
             for (RetrofitToRealmAdapter woA : woList) {
                 cityMap.put(woA.getName(), woA.getName());

@@ -20,10 +20,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'io.realm:realm-android:0.81.1'
-    compile group: 'org.achartengine', name: 'achartengine', version: '1.2.0'
+    compile 'org.achartengine:achartengine:1.2.0'
+    compile 'com.github.tibolte:elasticdownload:1.0.+'
+    compile project(':touchfree')
 }
