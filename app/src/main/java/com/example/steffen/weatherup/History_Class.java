@@ -138,20 +138,27 @@ public class History_Class extends ActionBarActivity {
         return query.get(0);
     }
 
-    public void add(WeatherObject wo) {
-        this.add(wo, MainActivity.c);
+    public void add(WeatherObject wo, int status, String dateServer, String timeServer) {
+        this.add(wo, MainActivity.c, status, dateServer, timeServer);
     }
 
-    public void add(WeatherObject wo, Context c) {
+    public void add(WeatherObject wo, Context c, int status, String dateServer, String timeServer) { //0 = aus Internet live, 1 = von Server
         Realm realm = Realm.getInstance(c);
         realm.beginTransaction();
         RetrofitToRealmAdapter woA = realm.createObject(RetrofitToRealmAdapter.class);
 
-        SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
+        String dateS = null, timeS = null;
 
-        String dateS = date.format(new Date());
-        String timeS = time.format(new Date());
+        if (status == 0) {
+            SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
+            SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
+
+            dateS = date.format(new Date());
+            timeS = time.format(new Date());
+        } else if (status == 1){
+            dateS = dateServer;
+            timeS = timeServer;
+        }
 
         String primaryKey = wo.getId() + ";" + dateS + ";" + timeS;
 

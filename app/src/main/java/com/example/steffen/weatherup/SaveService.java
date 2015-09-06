@@ -95,7 +95,7 @@ public class SaveService extends Service {
                 if(wo.getCod().equals("200")){
                     Log.e("*********",wo.getCod());
                     wo = WeatherObject.checkNull(wo);
-                    new History_Class().add(wo, c);
+                    new History_Class().add(wo, c, 0, "", "");
                 }
             }
 

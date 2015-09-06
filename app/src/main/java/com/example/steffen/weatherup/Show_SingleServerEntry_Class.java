@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Steffen on 06.09.2015.
@@ -60,6 +63,29 @@ public class Show_SingleServerEntry_Class extends ActionBarActivity {
 
         getSingleEntryFromServer(date, time, tableName);
 
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                WeatherObject.Coord coordTemp = new WeatherObject.Coord(null, null);
+
+                List<WeatherObject.Weather> weatherListTemp = new ArrayList<WeatherObject.Weather>();
+                WeatherObject.Weather weatherTemp = new WeatherObject.Weather(null, null, tv_weather_desc_result.getText().toString(), null);
+                weatherListTemp.add(weatherTemp);
+
+                WeatherObject.Main mainTemp = new WeatherObject.Main(tv_temp_result.getText().toString(), null,  null, null, null);
+
+                WeatherObject.Wind windTemp = new WeatherObject.Wind(null, null);
+
+                WeatherObject.Clouds cloudsTemp = new WeatherObject.Clouds(null);
+
+                WeatherObject.Sys sysTemp = new WeatherObject.Sys(null, null, null, null, null, null);
+
+                WeatherObject wo = WeatherObject.checkNull(new WeatherObject(coordTemp, weatherListTemp, mainTemp, windTemp, cloudsTemp, sysTemp, null, null, null, null, tv_city_result.getText().toString(), null));
+
+                new History_Class().add(wo, 1, date, time);
+            }
+        });
 
 
     }
