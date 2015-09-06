@@ -27,5 +27,4 @@ dependencies {
     compile 'io.realm:realm-android:0.81.1'
     compile 'org.achartengine:achartengine:1.2.0'
     compile 'com.github.tibolte:elasticdownload:1.0.+'
-    compile project(':touchfree')
 }

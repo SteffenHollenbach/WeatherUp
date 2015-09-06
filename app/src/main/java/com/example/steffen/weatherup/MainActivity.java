@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
         setTitle("Select Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
-        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "Name", "History", "Service-Settings", "Graph", "Server"};
+        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "Name", "History", "Service-Settings", "Graph", "Server", "Experimental"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < sources.length; ++i) {
@@ -75,6 +75,9 @@ public class MainActivity extends ActionBarActivity {
                     c.startActivity(intent);
                 }else if (position == 7){
                     Intent intent = new Intent(c,Download_Class.class);
+                    c.startActivity(intent);
+                }else if (position == 8){
+                    Intent intent = new Intent(c,MoveTest_Class.class);
                     c.startActivity(intent);
                 }else {
                     Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();

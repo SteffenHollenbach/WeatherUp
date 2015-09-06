@@ -1,1 +1,1 @@
-include ':app', ':touchfree'
+include ':app'

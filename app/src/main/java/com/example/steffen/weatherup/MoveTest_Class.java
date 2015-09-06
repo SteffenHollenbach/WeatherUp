@@ -20,6 +20,8 @@ public class MoveTest_Class extends ActionBarActivity {
 
         c = this;
 
+
+
         xy = (TextView)findViewById(R.id.tv_city);
     }
 }
