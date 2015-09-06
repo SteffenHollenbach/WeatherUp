@@ -1,6 +1,7 @@
 package com.example.steffen.weatherup;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by Steffen on 26.07.2015.
@@ -43,8 +44,9 @@ public class RetrofitToRealmAdapter extends RealmObject{
     private String date;
     private String time;
 
-    public RetrofitToRealmAdapter(){
+    private String primarykey;
 
+    public RetrofitToRealmAdapter() {
     }
 
     public RetrofitToRealmAdapter(WeatherObject wo) {
@@ -298,5 +300,13 @@ public class RetrofitToRealmAdapter extends RealmObject{
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getPrimarykey() {
+        return primarykey;
+    }
+
+    public void setPrimarykey(String primarykey) {
+        this.primarykey = primarykey;
     }
 }

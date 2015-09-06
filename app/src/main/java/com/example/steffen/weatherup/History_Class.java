@@ -150,6 +150,11 @@ public class History_Class extends ActionBarActivity {
         SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
         SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
 
+        String dateS = date.format(new Date());
+        String timeS = time.format(new Date());
+
+        String primaryKey = wo.getId() + ";" + dateS + ";" + timeS;
+
         woA.setLon(wo.getCoord().getLon());
         woA.setLat(wo.getCoord().getLat());
         woA.setWeather_id(wo.getWeather().get(0).getId());
@@ -176,8 +181,9 @@ public class History_Class extends ActionBarActivity {
         woA.setName(wo.getName());
         woA.setCod(wo.getCod());
 
-        woA.setDate(date.format(new Date()));
-        woA.setTime(time.format(new Date()));
+        woA.setDate(dateS);
+        woA.setTime(timeS);
+        woA.setPrimarykey(primaryKey);
 
 
         realm.commitTransaction();

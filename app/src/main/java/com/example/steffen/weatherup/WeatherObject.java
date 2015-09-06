@@ -295,6 +295,7 @@ public class WeatherObject implements Serializable {
 
     private String date;
     private String time;
+    private String primarykey;
 
     public Coord getCoord() {
         return coord;
@@ -410,6 +411,14 @@ public class WeatherObject implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getPrimarykey() {
+        return primarykey;
+    }
+
+    public void setPrimarykey(String primarykey) {
+        this.primarykey = primarykey;
     }
 
     public static WeatherObject checkNull(WeatherObject wo){

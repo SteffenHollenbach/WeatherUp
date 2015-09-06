@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -121,7 +120,8 @@ public class Upload_Class extends Activity{
         Log.e("******", "WoList-Size: " + query.size());
 
         if (woList.size() == 0){
-            Toast.makeText(MainActivity.c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
+            finish();
         }
     }
 
@@ -298,6 +298,7 @@ public class Upload_Class extends Activity{
                 nameValuePairs.add(new BasicNameValuePair("Time", woA2.getTime()));
                 nameValuePairs.add(new BasicNameValuePair("Tempreature", woA2.getTemp()));
                 nameValuePairs.add(new BasicNameValuePair("Weather", woA2.getDescription()));
+                nameValuePairs.add(new BasicNameValuePair("PrimaryKey", woA2.getPrimarykey()));
 
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 

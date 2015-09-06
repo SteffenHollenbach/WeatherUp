@@ -34,6 +34,9 @@
         <activity android:name=".Filter_Class"  android:label="Filter"/>
         <activity android:name=".ShowServiceCities_Class"  android:label="Service Cities"/>
         <activity android:name=".Upload_Class"  android:label="Upload Data"/>
+        <activity android:name=".Download_Class"  android:label="Select data to download:"/>
+        <activity android:name=".Download_CityEntries_Class"  android:label="Select data to download:"/>
+        <activity android:name=".Show_SingleServerEntry_Class"  android:label="Result"/>
 
         <service android:name=".SaveService">
             <intent-filter>
