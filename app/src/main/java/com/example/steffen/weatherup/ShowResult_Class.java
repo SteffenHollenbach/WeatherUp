@@ -91,7 +91,7 @@ public class ShowResult_Class extends ActionBarActivity {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new History_Class().add(wo, 0, "", "");
+                new History_Class().add(wo, 0, "", "", c);
             }
         });
 

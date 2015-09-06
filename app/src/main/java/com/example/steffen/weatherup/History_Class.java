@@ -1,6 +1,8 @@
 package com.example.steffen.weatherup;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -138,8 +140,8 @@ public class History_Class extends ActionBarActivity {
         return query.get(0);
     }
 
-    public void add(WeatherObject wo, int status, String dateServer, String timeServer) {
-        this.add(wo, MainActivity.c, status, dateServer, timeServer);
+    public void add(WeatherObject wo, int status, String dateServer, String timeServer, Context c) {
+        this.add(wo, c, status, dateServer, timeServer);
     }
 
     public void add(WeatherObject wo, Context c, int status, String dateServer, String timeServer) { //0 = aus Internet live, 1 = von Server
@@ -185,18 +187,34 @@ public class History_Class extends ActionBarActivity {
         woA.setVisibility(wo.getVisibility());
         woA.setDt(wo.getDt());
         woA.setId(wo.getId());
-        woA.setName(wo.getName().replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss"));
+        woA.setName(wo.getName().replace(" ", "").replace("-", "").replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("Ü", "Ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("ß", "ss"));
         woA.setCod(wo.getCod());
 
         woA.setDate(dateS);
         woA.setTime(timeS);
-        woA.setPrimarykey(primaryKey);
+        try {
+            woA.setPrimarykey(primaryKey);
+            realm.commitTransaction();
+            woList.add(woA);
+            //mAdapter.notifyDataSetChanged();
+            Toast.makeText(c, "weather-data saved", Toast.LENGTH_SHORT).show();
+        } catch (Exception e){
+            createDialog(c);
+        }
 
+    }
 
-        realm.commitTransaction();
-        woList.add(woA);
-        //mAdapter.notifyDataSetChanged();
-        Toast.makeText(c, "weather-data saved", Toast.LENGTH_SHORT).show();
+    void createDialog(Context c){
+        new AlertDialog.Builder(c)
+                .setTitle("Error while saving")
+                .setMessage("Does data already exist in local history?")
+                .setCancelable(false)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).create().show();
     }
 
     @Override

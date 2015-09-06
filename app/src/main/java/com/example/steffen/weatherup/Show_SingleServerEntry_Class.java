@@ -83,7 +83,7 @@ public class Show_SingleServerEntry_Class extends ActionBarActivity {
 
                 WeatherObject wo = WeatherObject.checkNull(new WeatherObject(coordTemp, weatherListTemp, mainTemp, windTemp, cloudsTemp, sysTemp, null, null, null, null, tv_city_result.getText().toString(), "666"));
 
-                new History_Class().add(wo, 1, date, time);
+                new History_Class().add(wo, 1, date, time, c);
             }
         });
 

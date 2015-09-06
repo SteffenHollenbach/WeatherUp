@@ -44,6 +44,7 @@ public class RetrofitToRealmAdapter extends RealmObject{
     private String date;
     private String time;
 
+    @PrimaryKey
     private String primarykey;
 
     public RetrofitToRealmAdapter() {
