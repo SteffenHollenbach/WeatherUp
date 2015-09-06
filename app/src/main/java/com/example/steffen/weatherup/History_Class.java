@@ -185,7 +185,7 @@ public class History_Class extends ActionBarActivity {
         woA.setVisibility(wo.getVisibility());
         woA.setDt(wo.getDt());
         woA.setId(wo.getId());
-        woA.setName(wo.getName());
+        woA.setName(wo.getName().replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss"));
         woA.setCod(wo.getCod());
 
         woA.setDate(dateS);

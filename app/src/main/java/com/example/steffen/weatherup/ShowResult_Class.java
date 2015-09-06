@@ -52,7 +52,7 @@ public class ShowResult_Class extends ActionBarActivity {
         btn_view = (Button) findViewById(R.id.btn_view);
         btn_service = (Button) findViewById(R.id.btn_service);
 
-        if(wo.getCod().equals("200")) {
+        if(wo.getCod().equals("200") || wo.getCod().equals("666")) {
             wo = WeatherObject.checkNull(wo);
 
             tv_city_result.setText(wo.getName());
@@ -74,6 +74,12 @@ public class ShowResult_Class extends ActionBarActivity {
                 tv_time.setText(time.format(new Date()));
             }else{
                 tv_time.setText(wo.getTime());
+            }
+
+            if (wo.getCod().equals("666")){
+                btn_save.setEnabled(false);
+                btn_service.setEnabled(false);
+                Toast.makeText(c, "\"server-data\", missing features will be available soon",Toast.LENGTH_SHORT).show();
             }
 
         } else {
@@ -98,8 +104,10 @@ public class ShowResult_Class extends ActionBarActivity {
                     t6 = (TableRow) findViewById(R.id.tableRow6);
                     t7 = (TableRow) findViewById(R.id.tableRow7);
 
+
                     t6.setVisibility(View.VISIBLE);
                     t7.setVisibility(View.VISIBLE);
+
 
                     tv_pressure_result = (TextView) findViewById(R.id.tv_pressure_result);
                     tv_visibility_result = (TextView) findViewById(R.id.tv_visibility_result);
@@ -149,7 +157,7 @@ public class ShowResult_Class extends ActionBarActivity {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             String shareBody = "The weather in " +  wo.getName() + " is " + wo.getWeather().get(0).getDescription() + " (" + wo.getMain().getTemp() + " °C).";
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "@string/app_name");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "WeatherUp");
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
