@@ -127,7 +127,7 @@ public class Download_Class extends ActionBarActivity {
                         }
 
                     }
-                }).create().show();
+                }).setIcon(R.drawable.error).show();
     }
 
 

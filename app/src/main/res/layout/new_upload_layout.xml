@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3fadec">
+    android:background="#ec5745">
 
 <is.arontibo.library.ElasticDownloadView
     android:id="@+id/elastic_download_view"
@@ -10,7 +10,7 @@
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#3fadec" />
+    android:background="#ec5745" />
 
 
 

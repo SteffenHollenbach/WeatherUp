@@ -104,6 +104,7 @@ public class SearchByGPS_Class extends ActionBarActivity {
                 Intent intent = new Intent(c, ShowResult_Class.class);
                 intent.putExtra("WeaterObject", wo);
                 c.startActivity(intent);
+                finish();
             }
 
             @Override

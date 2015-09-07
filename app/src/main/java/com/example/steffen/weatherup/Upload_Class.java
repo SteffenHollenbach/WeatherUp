@@ -189,7 +189,7 @@ public class Upload_Class extends Activity{
                         }
 
                     }
-                }).create().show();
+                }).setIcon(R.drawable.error).show();
     }
 
 

@@ -59,5 +59,6 @@
         android:enabled="false"
         android:background="#3fadec"
         android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"/>
+        style="?android:attr/borderlessButtonStyle"
+        android:visibility="invisible" />
 </RelativeLayout>

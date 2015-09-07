@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.special.ResideMenu.ResideMenu;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class ShowServiceCities_Class extends ActionBarActivity {
     private ListView mListView;
     ArrayAdapter<String> arrayAdapter;
     List<String> saved = new ArrayList<String>();
+    ResideMenu resideMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class ShowServiceCities_Class extends ActionBarActivity {
         c = this;
         prefs = c.getSharedPreferences(
                 "Share", Context.MODE_PRIVATE);
+
+        resideMenu = ResideMenus_Class.getServiceCitiesMenu(c, this);
 
         mListView = (ListView) findViewById(R.id.listview);
 
@@ -86,7 +91,7 @@ public class ShowServiceCities_Class extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_servicecities, menu);
+        //getMenuInflater().inflate(R.menu.menu_servicecities, menu);
         return true;
     }
 

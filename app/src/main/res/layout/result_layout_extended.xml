@@ -181,7 +181,8 @@
                 <TextView
                     android:id="@+id/tv_pressure"
                     android:text="Luftdruck: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"

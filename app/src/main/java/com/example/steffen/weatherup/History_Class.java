@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.special.ResideMenu.ResideMenu;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +36,7 @@ public class History_Class extends ActionBarActivity {
     static SharedPreferences prefs;
     Context c;
     ArrayAdapter<String> arrayAdapter;
-
+    ResideMenu resideMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class History_Class extends ActionBarActivity {
 
         mListView = (ListView) findViewById(R.id.listview);
         c = this;
+
+        resideMenu = ResideMenus_Class.getHistoryMenu(c, this);
 
         prefs = c.getSharedPreferences(
                 "Share", Context.MODE_PRIVATE);
@@ -123,7 +127,7 @@ public class History_Class extends ActionBarActivity {
         }
 
         if (saved.size() == 0){
-            Toast.makeText(c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
+            Toast.makeText(c, "No data found, maybe reset filter options?", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -221,7 +225,7 @@ public class History_Class extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_history, menu);
+        //getMenuInflater().inflate(R.menu.menu_history, menu);
         return true;
     }
 
