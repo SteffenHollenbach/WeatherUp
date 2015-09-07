@@ -5,16 +5,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.special.ResideMenu.ResideMenu;
 
 import java.text.SimpleDateFormat;
@@ -28,11 +34,12 @@ import io.realm.RealmResults;
 /**
  * Created by Steffen on 26.07.2015.
  */
-public class History_Class extends ActionBarActivity {
+public class History_Class extends AppCompatActivity{
 
     List<RetrofitToRealmAdapter> woList = new ArrayList<>();
     List<String> saved = new ArrayList<>();
-    private ListView mListView;
+    //private ListView mListView;
+    private SwipeMenuListView mListView;
     static SharedPreferences prefs;
     Context c;
     ArrayAdapter<String> arrayAdapter;
@@ -41,12 +48,17 @@ public class History_Class extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.history_layout);
+        setContentView(R.layout.swipe_out_list);
 
-        mListView = (ListView) findViewById(R.id.listview);
+        //mListView = (ListView) findViewById(R.id.listview);
+        mListView = (SwipeMenuListView) findViewById(R.id.listview);
+
         c = this;
 
         resideMenu = ResideMenus_Class.getHistoryMenu(c, this);
+        // add gesture operation's ignored views
+        SwipeMenuListView ignored_SwipeMenuListView = (SwipeMenuListView) findViewById(R.id.listview);
+        resideMenu.addIgnoredView(ignored_SwipeMenuListView);
 
         prefs = c.getSharedPreferences(
                 "Share", Context.MODE_PRIVATE);
@@ -70,7 +82,7 @@ public class History_Class extends ActionBarActivity {
 
         });
 
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -90,7 +102,7 @@ public class History_Class extends ActionBarActivity {
 
                 return true;
             }
-        });
+        });*/
 
     }
 
@@ -277,6 +289,64 @@ public class History_Class extends ActionBarActivity {
                 saved);
 
         mListView.setAdapter(arrayAdapter);
+
+
+        SwipeMenuCreator creator = new SwipeMenuCreator() {
+
+            @Override
+            public void create(SwipeMenu menu) {
+
+                // create "delete" item
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                // set item background
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                // set item width
+                deleteItem.setWidth(150);
+                // set a icon
+                deleteItem.setIcon(R.drawable.trash_medium);
+                // add to menu
+                menu.addMenuItem(deleteItem);
+            }
+        };
+
+        // set creator
+        mListView.setMenuCreator(creator);
+
+        mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        String s = mListView.getAdapter().getItem(position).toString();
+                        RetrofitToRealmAdapter woToDelete = (loadSingle(s));
+
+                        Realm realm = Realm.getInstance(c);
+                        realm.beginTransaction();
+                        woToDelete.removeFromRealm();
+                        realm.commitTransaction();
+                        finish();
+
+                        Toast.makeText(c, "Data '" + s + "' removed", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(c, History_Class.class);
+                        c.startActivity(intent);
+
+                        break;
+                }
+                // false : close the menu; true : not close the menu
+                return false;
+            }
+        });
+
+        mListView.setSwipeDirection(SwipeMenuListView.DIRECTION_LEFT);
+
+        // Close Interpolator
+        mListView.setCloseInterpolator(new BounceInterpolator());
+        // Open Interpolator
+        mListView.setOpenInterpolator(new BounceInterpolator());
+
     }
 
 

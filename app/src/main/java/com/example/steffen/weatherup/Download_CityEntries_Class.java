@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by Steffen on 05.09.2015.
  */
-public class Download_CityEntries_Class extends ActionBarActivity {
+public class Download_CityEntries_Class extends AppCompatActivity {
 
     static Context c;
     int position;

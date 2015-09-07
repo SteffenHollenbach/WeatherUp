@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Created by Steffen on 05.09.2015.
  */
-public class Download_Class extends ActionBarActivity {
+public class Download_Class extends AppCompatActivity {
 
     static Context c;
     SharedPreferences prefs;

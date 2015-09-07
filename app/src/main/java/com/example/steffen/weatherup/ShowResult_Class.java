@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * Created by Steffen on 26.07.2015.
  */
-public class ShowResult_Class extends ActionBarActivity {
+public class ShowResult_Class extends AppCompatActivity {
 
     TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_pressure_result, tv_visibility_result, tv_time, tv_date;
     Button btn_save, btn_service, btn_view;

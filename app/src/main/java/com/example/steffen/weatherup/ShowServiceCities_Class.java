@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by Steffen on 30.07.2015.
  */
-public class ShowServiceCities_Class extends ActionBarActivity {
+public class ShowServiceCities_Class extends AppCompatActivity {
 
     Context c;
     SharedPreferences prefs;

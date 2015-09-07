@@ -2,7 +2,7 @@ package com.example.steffen.weatherup;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +15,7 @@ import java.util.Calendar;
 /**
  * Created by Steffen on 29.07.2015.
  */
-public class Filter_Class extends ActionBarActivity implements DatePickerDialog.OnDateSetListener {
+public class Filter_Class extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     Context c;
     Button btn_go, btn_reset;

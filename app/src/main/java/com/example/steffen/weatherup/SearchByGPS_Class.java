@@ -6,7 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.victor.loading.newton.NewtonCradleLoading;
@@ -19,7 +19,7 @@ import retrofit.client.Response;
 /**
  * Created by Steffen on 26.07.2015.
  */
-public class SearchByGPS_Class extends ActionBarActivity {
+public class SearchByGPS_Class extends AppCompatActivity {
 
     final String ENDPOINT = "http://api.openweathermap.org/data/2.5";
     WeatherService weatherservice;

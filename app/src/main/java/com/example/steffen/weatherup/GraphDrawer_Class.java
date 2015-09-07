@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -28,7 +28,7 @@ import io.realm.RealmResults;
 /**
  * Created by Steffen on 28.07.2015.
  */
-public class GraphDrawer_Class extends ActionBarActivity{
+public class GraphDrawer_Class extends AppCompatActivity {
 
     Context c;
     XYSeries temp_series;

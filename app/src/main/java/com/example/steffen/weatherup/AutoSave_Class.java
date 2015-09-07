@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,7 +15,7 @@ import com.special.ResideMenu.ResideMenu;
 /**
  * Created by Steffen on 27.07.2015.
  */
-public class AutoSave_Class extends ActionBarActivity {
+public class AutoSave_Class extends AppCompatActivity {
 
     Button btn_start, btn_stop, btn_show, btn_reset;
     CheckBox cb_running;

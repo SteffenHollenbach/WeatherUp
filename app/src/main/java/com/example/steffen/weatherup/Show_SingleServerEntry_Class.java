@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Steffen on 06.09.2015.
  */
-public class Show_SingleServerEntry_Class extends ActionBarActivity {
+public class Show_SingleServerEntry_Class extends AppCompatActivity {
 
     static Context c;
     String date, time, cityNameClear, tableName;
