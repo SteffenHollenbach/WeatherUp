@@ -16,7 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/iv_check"
-        android:src="@drawable/check2"
         android:visibility="invisible"
         android:layout_above="@+id/tv_finish"
         android:layout_alignParentLeft="true"

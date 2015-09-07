@@ -27,4 +27,13 @@ dependencies {
     compile 'io.realm:realm-android:0.81.1'
     compile 'org.achartengine:achartengine:1.2.0'
     compile 'com.github.tibolte:elasticdownload:1.0.+'
+    compile 'com.wdullaer:materialdatetimepicker:1.5.1'
+    compile 'com.victor:lib:1.0.1'
+    //compile 'it.sephiroth.android.library.floatingmenu:floatingmenu:x.x.x'
+    compile 'com.specyci:residemenu:1.6+'
+
+
 }
+
+
+

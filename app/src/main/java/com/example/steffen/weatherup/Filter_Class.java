@@ -3,14 +3,19 @@ package com.example.steffen.weatherup;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
+
 /**
  * Created by Steffen on 29.07.2015.
  */
-public class Filter_Class extends ActionBarActivity {
+public class Filter_Class extends ActionBarActivity implements DatePickerDialog.OnDateSetListener {
 
     Context c;
     Button btn_go, btn_reset;
@@ -29,6 +34,22 @@ public class Filter_Class extends ActionBarActivity {
 
         et_city.setText(History_Class.prefs.getString("CityFilter", ""));
         et_date.setText(History_Class.prefs.getString("DateFilter", ""));
+
+        Calendar now = Calendar.getInstance();
+        final DatePickerDialog dpd = DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+
+        et_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
+
 
 
         btn_go.setOnClickListener(new View.OnClickListener() {
@@ -55,4 +76,21 @@ public class Filter_Class extends ActionBarActivity {
     }
 
 
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+
+        String day = dayOfMonth+"";
+        String month = ((int)(++monthOfYear))+"";
+
+        Log.e("vvvvv",month);
+
+        if (dayOfMonth < 10){
+            day = "0" + dayOfMonth;
+        }
+        if (monthOfYear < 10){
+            month = "0" + monthOfYear;
+        }
+        String date = day+"."+month+"."+year;
+        et_date.setText(date);
+    }
 }

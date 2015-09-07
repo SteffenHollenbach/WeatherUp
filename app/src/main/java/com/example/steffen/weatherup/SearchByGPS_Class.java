@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
+import com.victor.loading.newton.NewtonCradleLoading;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -34,6 +36,9 @@ public class SearchByGPS_Class extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_gps_layout);
+
+        NewtonCradleLoading newton = (NewtonCradleLoading) findViewById(R.id.newton_cradle_loading);
+        newton.start();
 
         c = this;
         aktPos = new double[2];

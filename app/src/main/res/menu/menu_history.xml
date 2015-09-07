@@ -14,7 +14,7 @@
         android:title="Graph"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:icon="@drawable/graph_icon"/>
+        android:icon="@drawable/graphicon"/>
 
     <item android:id="@+id/delete"
         android:title="Delete everything"

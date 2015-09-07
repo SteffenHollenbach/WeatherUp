@@ -1,6 +1,8 @@
 package com.example.steffen.weatherup;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -75,7 +77,7 @@ public class Download_Class extends ActionBarActivity {
     }
 
     public String[] getCitiesFromServer(){
-        String [] result;
+        String [] result = null;
         StringBuilder total = new StringBuilder();
 
         try {
@@ -93,14 +95,39 @@ public class Download_Class extends ActionBarActivity {
             e.printStackTrace();
         }
 
-        result = total.toString().split(";");
-        sourcesFull = total.toString().split(";");
+        try {
+            result = total.toString().split(";");
+            sourcesFull = total.toString().split(";");
 
-        for (int i = 0; i < result.length; i++){
-            result[i] = result[i].substring(0, result[i].indexOf('_'));
+            for (int i = 0; i < result.length; i++) {
+                result[i] = result[i].substring(0, result[i].indexOf('_'));
+            }
+        } catch (Exception e){
+
+            createDialog("Error","Error contacting server or no data on server",0);
+            //finish();
         }
 
         return result;
+    }
+
+    void createDialog(String title, String text, final int afterClick){ // 0 = finish(), 1 = close dialog
+
+        new AlertDialog.Builder(c)
+                .setTitle(title)
+                .setMessage(text)
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (afterClick == 0) {
+                            finish();
+                        } else if (afterClick == 1) {
+
+                        }
+
+                    }
+                }).create().show();
     }
 
 
