@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#3fadec">
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#31ffffff"
+        android:background="#3fadec"
         android:layout_weight="2"
         android:layout_below="@+id/tv_date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/scrollView">
+
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -32,7 +34,8 @@
                 <TextView
                     android:id="@+id/tv_city"
                     android:text="Stadt: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -40,7 +43,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_city_result"
-                    android:layout_column="15"/>
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
 
@@ -58,7 +62,8 @@
                 <TextView
                     android:id="@+id/tv_temp"
                     android:text="Temperatur: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +71,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_temp_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
             <TableRow
@@ -79,7 +85,8 @@
                 <TextView
                     android:id="@+id/tv_weather_desc"
                     android:text="Wetter: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,7 +94,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_weather_desc_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
             <TableRow
@@ -100,7 +108,8 @@
                 <TextView
                     android:id="@+id/tv_wind_speed"
                     android:text="Windgeschwindigkeit: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,7 +117,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_wind_speed_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
             <TableRow
@@ -121,7 +131,8 @@
                 <TextView
                     android:id="@+id/tv_humidity"
                     android:text="Luftfeuchte: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,7 +140,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_humidity_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
             <TableRow
@@ -143,7 +155,8 @@
                 <TextView
                     android:id="@+id/tv_pressure"
                     android:text="Luftdruck: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,7 +164,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_pressure_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
             <TableRow
@@ -165,7 +179,8 @@
                 <TextView
                     android:id="@+id/tv_visibility"
                     android:text="Sichtbarkeit: "
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -173,7 +188,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="Unknown"
                     android:id="@+id/tv_visibility_result"
-                    android:layout_column="15" />
+                    android:layout_column="15"
+                    android:textColor="#ffffff"/>
 
             </TableRow>
         </TableLayout>
@@ -184,6 +200,8 @@
         android:layout_height="wrap_content"
         android:text="Save to device"
         android:id="@+id/btn_save"
+        android:textColor="#ffffff"
+        android:background="#40adec"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -195,7 +213,8 @@
         android:id="@+id/tv_date"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -205,6 +224,7 @@
         android:id="@+id/tv_time"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff"/>
 
 </RelativeLayout>

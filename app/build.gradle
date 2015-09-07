@@ -32,8 +32,10 @@ dependencies {
     //compile 'it.sephiroth.android.library.floatingmenu:floatingmenu:x.x.x'
     compile 'com.specyci:residemenu:1.6+'
 
-
 }
 
+repositories {
+    mavenCentral()
+}
 
 

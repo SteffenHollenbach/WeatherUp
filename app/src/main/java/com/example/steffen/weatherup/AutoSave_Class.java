@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.special.ResideMenu.ResideMenu;
+
 /**
  * Created by Steffen on 27.07.2015.
  */
@@ -19,6 +21,7 @@ public class AutoSave_Class extends ActionBarActivity {
     CheckBox cb_running;
     Context c;
     static SharedPreferences prefs;
+    ResideMenu resideMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class AutoSave_Class extends ActionBarActivity {
         btn_reset = (Button) findViewById(R.id.btn_reset);
         cb_running = (CheckBox) findViewById(R.id.cb_running);
         c = this;
+
+        resideMenu = ResideMenus_Class.getMainMenu(c, this);
 
         prefs = c.getSharedPreferences(
                 "Share", Context.MODE_PRIVATE);
