@@ -35,8 +35,8 @@
         android:id="@+id/btn_get"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        style="?android:attr/borderlessButtonStyle"
         android:background="#3fadec"
-        android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:textColor="#ffffff"/>
 
 </RelativeLayout>

@@ -52,7 +52,7 @@ public class Download_Class_Stage2 extends AppCompatActivity {
                                     int position, long id) {
 
                 Intent intent = new Intent(c, Download_CityEntries_Class.class);
-                intent.putExtra("position", (int) position);
+                intent.putExtra("position", position);
                 intent.putExtra("cityNameClear", sources[position]);
                 Bundle b = new Bundle();
                 b.putStringArray("sourcesFull", sourcesFull);
@@ -64,7 +64,6 @@ public class Download_Class_Stage2 extends AppCompatActivity {
         });
 
     }
-
 
 
 }

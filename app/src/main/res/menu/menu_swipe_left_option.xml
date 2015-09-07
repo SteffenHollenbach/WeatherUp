@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HistoryClass">
 
-    <item android:id="@+id/swipeLeft"
-        android:title="Swipe Left"
+    <item
+        android:id="@+id/swipeLeft"
+        android:icon="@drawable/swipe_left"
         android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/swipe_left"/>
-
+        android:title="Swipe Left"
+        app:showAsAction="always" />
 
 
 </menu>

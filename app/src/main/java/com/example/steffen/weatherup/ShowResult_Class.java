@@ -52,7 +52,7 @@ public class ShowResult_Class extends AppCompatActivity {
         btn_view = (Button) findViewById(R.id.btn_view);
         btn_service = (Button) findViewById(R.id.btn_service);
 
-        if(wo.getCod().equals("200") || wo.getCod().equals("666")) {
+        if (wo.getCod().equals("200") || wo.getCod().equals("666")) {
             wo = WeatherObject.checkNull(wo);
 
             tv_city_result.setText(wo.getName());
@@ -64,28 +64,28 @@ public class ShowResult_Class extends AppCompatActivity {
             SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy");
             SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss");
 
-            if(wo.getDate().equals("Unkown")){
+            if (wo.getDate().equals("Unkown")) {
                 tv_date.setText(date.format(new Date()));
             } else {
                 tv_date.setText(wo.getDate());
             }
 
-            if(wo.getTime().equals("Unkown")){
+            if (wo.getTime().equals("Unkown")) {
                 tv_time.setText(time.format(new Date()));
-            }else{
+            } else {
                 tv_time.setText(wo.getTime());
             }
 
-            if (wo.getCod().equals("666")){
+            if (wo.getCod().equals("666")) {
                 btn_save.setEnabled(false);
                 btn_service.setEnabled(false);
-                Toast.makeText(c, "\"server-data\", missing features will be available soon",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "\"server-data\", missing features will be available soon", Toast.LENGTH_SHORT).show();
             }
 
         } else {
-           tv_city_result.setText("Fehler");
-           btn_save.setEnabled(false);
-           btn_service.setEnabled(false);
+            tv_city_result.setText("Fehler");
+            btn_save.setEnabled(false);
+            btn_service.setEnabled(false);
         }
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +98,7 @@ public class ShowResult_Class extends AppCompatActivity {
         btn_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(basic && wo.getCod().equals("200")){
+                if (basic && wo.getCod().equals("200")) {
                     basic = false;
 
                     t6 = (TableRow) findViewById(R.id.tableRow6);
@@ -115,15 +115,15 @@ public class ShowResult_Class extends AppCompatActivity {
                     tv_pressure_result.setText(wo.getMain().getPressure() + " hPa");
                     tv_visibility_result.setText(wo.getVisibility() + " m");
 
-                    Toast.makeText(c, "Extended",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "Extended", Toast.LENGTH_SHORT).show();
 
-                }else if(basic == false){
+                } else if (basic == false) {
                     basic = true;
 
                     t6.setVisibility(View.GONE);
                     t7.setVisibility(View.GONE);
 
-                    Toast.makeText(c, "Basic",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "Basic", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -131,11 +131,11 @@ public class ShowResult_Class extends AppCompatActivity {
         btn_service.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(wo.getCod().equals("200")){
+                if (wo.getCod().equals("200")) {
                     String s = prefs.getString("ServiceCities", "");
-                    s = s.replace(wo.getId()+",", "");
+                    s = s.replace(wo.getId() + ",", "");
                     prefs.edit().putString("ServiceCities", s + wo.getId() + ",").apply();
-                    prefs.edit().putString(wo.getId()+"", wo.getName()).apply();
+                    prefs.edit().putString(wo.getId() + "", wo.getName()).apply();
                     Toast.makeText(c, wo.getName() + " added to service", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -156,7 +156,7 @@ public class ShowResult_Class extends AppCompatActivity {
 
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
-            String shareBody = "The weather in " +  wo.getName() + " is " + wo.getWeather().get(0).getDescription() + " (" + wo.getMain().getTemp() + " °C).";
+            String shareBody = "The weather in " + wo.getName() + " is " + wo.getWeather().get(0).getDescription() + " (" + wo.getMain().getTemp() + " °C).";
             sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "WeatherUp");
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
             startActivity(Intent.createChooser(sharingIntent, "Share via"));

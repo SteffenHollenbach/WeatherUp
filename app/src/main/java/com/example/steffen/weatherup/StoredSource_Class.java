@@ -41,7 +41,7 @@ public class StoredSource_Class extends AppCompatActivity {
         setTitle("Select Stored-Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
-        String[] sources = new String[] {"Local", "Server", "Graph"};
+        String[] sources = new String[]{"Local", "Server", "Graph"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < sources.length; ++i) {
@@ -57,18 +57,18 @@ public class StoredSource_Class extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
-                if (position == 0){
+                if (position == 0) {
                     Intent intent = new Intent(c, History_Class.class);
                     c.startActivity(intent);
-                }else if (position == 1){
-                    Intent intent = new Intent(c,Download_Class.class);
+                } else if (position == 1) {
+                    Intent intent = new Intent(c, Download_Class.class);
                     c.startActivity(intent);
-                }else if (position == 2){
-                    Intent intent = new Intent(c,GraphDrawer_Class.class);
+                } else if (position == 2) {
+                    Intent intent = new Intent(c, GraphDrawer_Class.class);
                     intent.putExtra("cityFilter", "");
                     intent.putExtra("dateFilter", "");
                     c.startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();
                 }
 

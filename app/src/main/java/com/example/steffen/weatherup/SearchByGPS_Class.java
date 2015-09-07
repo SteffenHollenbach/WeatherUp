@@ -55,7 +55,6 @@ public class SearchByGPS_Class extends AppCompatActivity {
         weatherservice = restAdapter.create(WeatherService.class);
 
 
-
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener() {
             @Override
@@ -63,10 +62,10 @@ public class SearchByGPS_Class extends AppCompatActivity {
                 aktPos[0] = location.getLatitude();
                 aktPos[1] = location.getLongitude();
 
-                lat = location.getLatitude()+"";
-                lon = location.getLongitude()+"";
+                lat = location.getLatitude() + "";
+                lon = location.getLongitude() + "";
 
-                Log.e("Location", lat+", "+lon);
+                Log.e("Location", lat + ", " + lon);
                 if (first) {
                     first = false;
                     getWeatherGPS(lat, lon, "metric");
@@ -91,8 +90,7 @@ public class SearchByGPS_Class extends AppCompatActivity {
     }
 
 
-
-    public void getWeatherGPS(String lat, String lon, String units){
+    public void getWeatherGPS(String lat, String lon, String units) {
 
         locationManager.removeUpdates(locationListener);
         locationManager = null;
@@ -113,16 +111,16 @@ public class SearchByGPS_Class extends AppCompatActivity {
             public void failure(RetrofitError error) {
                 Log.e("Gefunden", "Nein: " + error);
 
-                    new AlertDialog.Builder(c)
-                            .setTitle("Error")
-                            .setMessage("Can't connect to weather service. Please make sure you have a working internet connection.")
-                            .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                        finish();
-                                }
-                            }).setIcon(R.drawable.error).show();
+                new AlertDialog.Builder(c)
+                        .setTitle("Error")
+                        .setMessage("Can't connect to weather service. Please make sure you have a working internet connection.")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        }).setIcon(R.drawable.error).show();
 
 
             }

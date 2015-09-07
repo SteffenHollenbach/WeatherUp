@@ -68,14 +68,14 @@ public class Download_Class extends AppCompatActivity {
         mHandler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message message) {
-                createDialog("Error","Error contacting server or no data on server",0);
+                createDialog("Error", "Error contacting server or no data on server", 0);
             }
         };
 
     }
 
-    public void getCitiesFromServer(){
-        String [] result = null;
+    public void getCitiesFromServer() {
+        String[] result = null;
         StringBuilder total = new StringBuilder();
 
         try {
@@ -100,7 +100,7 @@ public class Download_Class extends AppCompatActivity {
             for (int i = 0; i < result.length; i++) {
                 result[i] = result[i].substring(0, result[i].indexOf('_'));
             }
-        } catch (Exception e){
+        } catch (Exception e) {
 
             //createDialog("Error","Error contacting server or no data on server",0);
             Message message = mHandler.obtainMessage();
@@ -118,7 +118,7 @@ public class Download_Class extends AppCompatActivity {
 
     }
 
-    void createDialog(String title, String text, final int afterClick){ // 0 = finish(), 1 = close dialog
+    void createDialog(String title, String text, final int afterClick) { // 0 = finish(), 1 = close dialog
 
         new AlertDialog.Builder(c)
                 .setTitle(title)
@@ -136,9 +136,6 @@ public class Download_Class extends AppCompatActivity {
                     }
                 }).setIcon(R.drawable.error).show();
     }
-
-
-
 
 
 }

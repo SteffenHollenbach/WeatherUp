@@ -28,7 +28,7 @@ public class SaveReciever extends BroadcastReceiver {
         prefs = context.getSharedPreferences(
                 "Share", Context.MODE_PRIVATE);
 
-        if ((intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) && prefs.getBoolean("ServiceEnabled", false))|| intent.getAction().equals("StartSaveService")) {
+        if ((intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) && prefs.getBoolean("ServiceEnabled", false)) || intent.getAction().equals("StartSaveService")) {
             Log.v("WhatTheDroidService", " Boot komplett bzw. StartService recieved.");
             Toast.makeText(context, "Recieved (Start)", Toast.LENGTH_SHORT).show();
 
@@ -44,7 +44,7 @@ public class SaveReciever extends BroadcastReceiver {
 
             Log.v("WhatTheDroidService", "AlarmManager gesetzt");
 
-        } else if (intent.getAction().equals("StopSaveService")){
+        } else if (intent.getAction().equals("StopSaveService")) {
             Toast.makeText(context, "Recieved (Stop)", Toast.LENGTH_SHORT).show();
 
             am.cancel(saveServicePendingIntent);

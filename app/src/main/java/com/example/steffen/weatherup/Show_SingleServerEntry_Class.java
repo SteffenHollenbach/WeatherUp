@@ -73,7 +73,7 @@ public class Show_SingleServerEntry_Class extends AppCompatActivity {
                 WeatherObject.Weather weatherTemp = new WeatherObject.Weather(null, null, tv_weather_desc_result.getText().toString(), null);
                 weatherListTemp.add(weatherTemp);
 
-                WeatherObject.Main mainTemp = new WeatherObject.Main(tv_temp_result.getText().toString(), null,  null, null, null);
+                WeatherObject.Main mainTemp = new WeatherObject.Main(tv_temp_result.getText().toString(), null, null, null, null);
 
                 WeatherObject.Wind windTemp = new WeatherObject.Wind(null, null);
 
@@ -90,14 +90,14 @@ public class Show_SingleServerEntry_Class extends AppCompatActivity {
 
     }
 
-    public void getSingleEntryFromServer(String date, String time, String tableName){
-        String [] result;
+    public void getSingleEntryFromServer(String date, String time, String tableName) {
+        String[] result;
         StringBuilder total = new StringBuilder();
 
-        Log.e("*********", "http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/getSingleEntry.php?TableName="+tableName+"&Date="+date+"&Time="+time);
+        Log.e("*********", "http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/getSingleEntry.php?TableName=" + tableName + "&Date=" + date + "&Time=" + time);
 
         try {
-            URL url = new URL("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/getSingleEntry.php?TableName="+tableName+"&Date="+date+"&Time="+time); //Skript ausführen
+            URL url = new URL("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/getSingleEntry.php?TableName=" + tableName + "&Date=" + date + "&Time=" + time); //Skript ausführen
             HttpURLConnection mUrlConnection;
             mUrlConnection = (HttpURLConnection) url.openConnection();
             mUrlConnection.setDoInput(true);
@@ -118,7 +118,6 @@ public class Show_SingleServerEntry_Class extends AppCompatActivity {
         tv_time.setText(result[3]);
         tv_temp_result.setText(result[4]);
         tv_weather_desc_result.setText(result[5]);
-
 
 
     }

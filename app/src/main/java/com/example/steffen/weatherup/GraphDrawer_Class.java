@@ -52,7 +52,6 @@ public class GraphDrawer_Class extends AppCompatActivity {
         c = this;
 
 
-
         loadData(cityFilter, dateFilter);
         createXYSeries();
         drawGraph(seriesList);
@@ -69,15 +68,15 @@ public class GraphDrawer_Class extends AppCompatActivity {
         if (cityFilter.equals("") && dateFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .findAll();
-        }else if (!cityFilter.equals("") && dateFilter.equals("")){
+        } else if (!cityFilter.equals("") && dateFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("name", cityFilter)
                     .findAll();
-        }else if (!dateFilter.equals("") && cityFilter.equals("")){
+        } else if (!dateFilter.equals("") && cityFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("date", dateFilter)
                     .findAll();
-        }else{
+        } else {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("name", cityFilter)
                     .equalTo("date", dateFilter)
@@ -93,12 +92,12 @@ public class GraphDrawer_Class extends AppCompatActivity {
 
         Log.e("******", "WoList-Size: " + query.size());
 
-        if (woList.size() == 0){
+        if (woList.size() == 0) {
             Toast.makeText(c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void drawGraph(List<XYSeries> seriesList){
+    public void drawGraph(List<XYSeries> seriesList) {
         XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 
         // We want to avoid black border
@@ -121,7 +120,7 @@ public class GraphDrawer_Class extends AppCompatActivity {
         mRenderer.setGridColor(Color.GRAY);
         mRenderer.setLabelsColor(Color.BLACK);
 
-        mRenderer.setMargins(new int[] { 50, 50, 200, 22 });
+        mRenderer.setMargins(new int[]{50, 50, 200, 22});
         mRenderer.setFitLegend(true);
 
         //mRenderer.setZoomEnabled(true, false);
@@ -131,16 +130,16 @@ public class GraphDrawer_Class extends AppCompatActivity {
 
         XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
 
-        for(XYSeries xy : seriesList){
+        for (XYSeries xy : seriesList) {
             mDataset.addSeries(xy);
 
             // Now we create the renderer
             XYSeriesRenderer renderer = new XYSeriesRenderer();
             renderer.setLineWidth(2);
 
-            int red = (int)(Math.random() * 245);
-            int green = (int)(Math.random() * 245);
-            int blue = (int)(Math.random() * 245);
+            int red = (int) (Math.random() * 245);
+            int green = (int) (Math.random() * 245);
+            int blue = (int) (Math.random() * 245);
 
 
             renderer.setColor(Color.rgb(red, green, blue));
@@ -156,20 +155,20 @@ public class GraphDrawer_Class extends AppCompatActivity {
 
         GraphicalView chartView = ChartFactory.getLineChartView(c, mDataset, mRenderer);
 
-        chart_lay.addView(chartView,0);
+        chart_lay.addView(chartView, 0);
     }
 
-    public void createXYSeries(){
+    public void createXYSeries() {
         Map<String, String> cityMap = new HashMap<String, String>();
         seriesList.clear();
 
         for (RetrofitToRealmAdapter woA : woList) {
-           cityMap.put(woA.getName(), woA.getName());
+            cityMap.put(woA.getName(), woA.getName());
         }
 
         Log.e("******", "CityMap-Size create: " + cityMap.size());
 
-        for(String key : cityMap.values()) {
+        for (String key : cityMap.values()) {
 
             Log.e("******", "Key: " + key);
 
@@ -204,12 +203,11 @@ public class GraphDrawer_Class extends AppCompatActivity {
     }
 
 
-
-    public void createXYSeriesPart2(List<RetrofitToRealmAdapter> woList2){
+    public void createXYSeriesPart2(List<RetrofitToRealmAdapter> woList2) {
         XYSeries temp_series = new XYSeries("Temprature " + woList2.get(0).getName());
         int hour = 0;
 
-        for(RetrofitToRealmAdapter woA : woList2){
+        for (RetrofitToRealmAdapter woA : woList2) {
             temp_series.add(hour++, Double.parseDouble(new RealmToRetrofitAdapter(woA).createWeatherObject().getMain().getTemp()));
         }
 

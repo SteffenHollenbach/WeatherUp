@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ShowResult_Class">
 
-    <item android:id="@+id/share"
-        android:title="Share"
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/share"
         android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/share"/>
+        android:title="Share"
+        app:showAsAction="always" />
 
 </menu>

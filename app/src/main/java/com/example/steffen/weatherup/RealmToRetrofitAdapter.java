@@ -10,7 +10,7 @@ public class RealmToRetrofitAdapter {
 
     WeatherObject wo;
 
-    public RealmToRetrofitAdapter(RetrofitToRealmAdapter woA){
+    public RealmToRetrofitAdapter(RetrofitToRealmAdapter woA) {
         WeatherObject.Coord coord = new WeatherObject.Coord(woA.getLon(), woA.getLat());
 
         WeatherObject.Weather weather = new WeatherObject.Weather(woA.getId(), woA.getMain(), woA.getDescription(), woA.getIcon());
@@ -30,8 +30,7 @@ public class RealmToRetrofitAdapter {
     }
 
 
-
-    public WeatherObject createWeatherObject(){
+    public WeatherObject createWeatherObject() {
         return wo;
     }
 }

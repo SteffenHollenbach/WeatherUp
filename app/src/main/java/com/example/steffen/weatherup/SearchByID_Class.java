@@ -58,7 +58,7 @@ public class SearchByID_Class extends AppCompatActivity {
 
     }
 
-    public void getWeatherID(String id, String units){
+    public void getWeatherID(String id, String units) {
         weatherservice.getWeatherID(id, units, new Callback<WeatherObject>() {
 
             @Override

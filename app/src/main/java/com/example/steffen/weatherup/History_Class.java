@@ -34,7 +34,7 @@ import io.realm.RealmResults;
 /**
  * Created by Steffen on 26.07.2015.
  */
-public class History_Class extends AppCompatActivity{
+public class History_Class extends AppCompatActivity {
 
     List<RetrofitToRealmAdapter> woList = new ArrayList<>();
     List<String> saved = new ArrayList<>();
@@ -116,15 +116,15 @@ public class History_Class extends AppCompatActivity{
         if (cityFilter.equals("") && dateFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .findAll();
-        }else if (!cityFilter.equals("") && dateFilter.equals("")){
+        } else if (!cityFilter.equals("") && dateFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("name", cityFilter)
                     .findAll();
-        }else if (!dateFilter.equals("") && cityFilter.equals("")){
+        } else if (!dateFilter.equals("") && cityFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("date", dateFilter)
                     .findAll();
-        }else{
+        } else {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("name", cityFilter)
                     .equalTo("date", dateFilter)
@@ -136,10 +136,10 @@ public class History_Class extends AppCompatActivity{
 
         for (RetrofitToRealmAdapter woA : query) {
             woList.add(woA);
-            saved.add(woA.getName() + "," + woA.getDate()+ "," + woA.getTime());
+            saved.add(woA.getName() + "," + woA.getDate() + "," + woA.getTime());
         }
 
-        if (saved.size() == 0){
+        if (saved.size() == 0) {
             Toast.makeText(c, "No data found, maybe reset filter options?", Toast.LENGTH_LONG).show();
         }
     }
@@ -174,7 +174,7 @@ public class History_Class extends AppCompatActivity{
 
             dateS = date.format(new Date());
             timeS = time.format(new Date());
-        } else if (status == 1){
+        } else if (status == 1) {
             dateS = dateServer;
             timeS = timeServer;
         }
@@ -215,14 +215,14 @@ public class History_Class extends AppCompatActivity{
             woList.add(woA);
             //mAdapter.notifyDataSetChanged();
             Toast.makeText(c, "weather-data saved", Toast.LENGTH_SHORT).show();
-        } catch (Exception e){
+        } catch (Exception e) {
             createDialog(c);
             realm.cancelTransaction();
         }
 
     }
 
-    void createDialog(Context c){
+    void createDialog(Context c) {
         new AlertDialog.Builder(c)
                 .setTitle("Error while saving")
                 .setMessage("Does data already exist in local history?")
@@ -253,22 +253,21 @@ public class History_Class extends AppCompatActivity{
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
         initialize();
 
     }
 
-    public void initialize(){
+    public void initialize() {
         loadData();
 
         String[] seperated = saved.toArray(new String[saved.size()]);
 
-        for (int i = 0; i < seperated.length; i++){
-            seperated[i] = new StringBuilder(seperated[i].replace(",",", ")).append(" Uhr").toString();
+        for (int i = 0; i < seperated.length; i++) {
+            seperated[i] = new StringBuilder(seperated[i].replace(",", ", ")).append(" Uhr").toString();
         }
-
 
 
         arrayAdapter = new ArrayAdapter<String>(
@@ -336,9 +335,6 @@ public class History_Class extends AppCompatActivity{
         mListView.setOpenInterpolator(new BounceInterpolator());
 
     }
-
-
-
 
 
 }

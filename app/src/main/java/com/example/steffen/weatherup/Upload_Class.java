@@ -36,7 +36,7 @@ import is.arontibo.library.ElasticDownloadView;
 /**
  * Created by Steffen on 11.08.2015.
  */
-public class Upload_Class extends Activity{
+public class Upload_Class extends Activity {
 
     List<RetrofitToRealmAdapter> woList = new ArrayList<>();
     //List<XYSeries> seriesList = new ArrayList<>();
@@ -83,8 +83,6 @@ public class Upload_Class extends Activity{
     }
 
 
-
-
     public void loadData(String cityFilter, String dateFilter) {
         Realm realm = Realm.getInstance(this);
         RealmResults<RetrofitToRealmAdapter> query;
@@ -95,15 +93,15 @@ public class Upload_Class extends Activity{
         if (cityFilter.equals("") && dateFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .findAll();
-        }else if (!cityFilter.equals("") && dateFilter.equals("")){
+        } else if (!cityFilter.equals("") && dateFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("name", cityFilter)
                     .findAll();
-        }else if (!dateFilter.equals("") && cityFilter.equals("")){
+        } else if (!dateFilter.equals("") && cityFilter.equals("")) {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("date", dateFilter)
                     .findAll();
-        }else{
+        } else {
             query = realm.where(RetrofitToRealmAdapter.class)
                     .equalTo("name", cityFilter)
                     .equalTo("date", dateFilter)
@@ -122,19 +120,19 @@ public class Upload_Class extends Activity{
 
         Log.e("******", "WoList-Size: " + query.size());
 
-        if (woList.size() == 0){
+        if (woList.size() == 0) {
             //Toast.makeText(MainActivity.c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
             finish();
         }
     }
 
 
-    public boolean createOnlineTable(String CityName, String CityId){
+    public boolean createOnlineTable(String CityName, String CityId) {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/createTable.php");
 
-        CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
+        CityName = CityName.replace(" ", "").replace("-", "").replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("Ü", "Ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("ß", "ss");
 
         try {
 
@@ -149,7 +147,6 @@ public class Upload_Class extends Activity{
             ResponseHandler<String> resonseHandler = new BasicResponseHandler();
             String response = httpclient.execute(httppost, resonseHandler);
             Log.e("******", response);
-
 
 
         } catch (ClientProtocolException e) {
@@ -171,7 +168,7 @@ public class Upload_Class extends Activity{
         return true;
     }
 
-    void createDialog(String title, String text, final int afterClick){ // 0 = finish(), 1 = close dialog
+    void createDialog(String title, String text, final int afterClick) { // 0 = finish(), 1 = close dialog
 
         running = false;
 
@@ -195,7 +192,8 @@ public class Upload_Class extends Activity{
 
     private class UploadOperation extends AsyncTask<String, Integer, String> {
         @Override
-        protected void onPreExecute() {}
+        protected void onPreExecute() {
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -214,7 +212,7 @@ public class Upload_Class extends Activity{
             //tv_status2.setVisibility(View.INVISIBLE);
             //sb_progress.setVisibility(View.INVISIBLE);*/
 
-            if(running == false){
+            if (running == false) {
 
                 mElasticDownloadView.fail();
                 createDialog("Error", "Server Unreachable", 1);
@@ -232,8 +230,6 @@ public class Upload_Class extends Activity{
             }
 
 
-
-
         }
 
         @Override
@@ -243,13 +239,13 @@ public class Upload_Class extends Activity{
 
             //tv_status2.setText(all + " / " + allInAll);
 
-            int prog = (int)((float) 100/allInAll*all);
+            int prog = (int) ((float) 100 / allInAll * all);
 
             mElasticDownloadView.setProgress(prog);
-            Log.e("***PROGRESS***",prog+"");
+            Log.e("***PROGRESS***", prog + "");
         }
 
-        public void sortData(){
+        public void sortData() {
             Map<String, String> cityMap = new HashMap<String, String>();
 
 
@@ -259,7 +255,7 @@ public class Upload_Class extends Activity{
 
             Log.e("******", "CityMap-Size create: " + cityMap.size());
 
-            for(String key : cityMap.values()) {
+            for (String key : cityMap.values()) {
 
                 Log.e("******", "Key: " + key);
 
@@ -291,7 +287,7 @@ public class Upload_Class extends Activity{
 
                     for (RetrofitToRealmAdapter woA2 : woList2) {
                         Log.e("******", "Send Data: ");
-                        if (running == true){
+                        if (running == true) {
                             sendData(woA2);
                         }
                     }
@@ -302,15 +298,15 @@ public class Upload_Class extends Activity{
 
         }
 
-        public boolean sendData(RetrofitToRealmAdapter woA2){ //Daten des Objektes an den Server übertragen
+        public boolean sendData(RetrofitToRealmAdapter woA2) { //Daten des Objektes an den Server übertragen
 
 
             // Create a new HttpClient and Post Header
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/insertEntry.php");
 
-            String CityName =  woA2.getName();
-            CityName = CityName.replace(" ","").replace("-","").replace("ü","ue").replace("ä", "ae").replace("ö","oe").replace("Ü","Ue").replace("Ä","Ae").replace("Ö","Oe").replace("ß","ss");
+            String CityName = woA2.getName();
+            CityName = CityName.replace(" ", "").replace("-", "").replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("Ü", "Ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("ß", "ss");
 
             try {
 
@@ -330,16 +326,16 @@ public class Upload_Class extends Activity{
                 ResponseHandler<String> resonseHandler = new BasicResponseHandler();
                 String response = httpclient.execute(httppost, resonseHandler);
                 Log.e("******", response);
-                if (response.toLowerCase().contains("error")){
+                if (response.toLowerCase().contains("error")) {
                     error++;
                 }
-                if (response.toLowerCase().contains("duplicate")){
+                if (response.toLowerCase().contains("duplicate")) {
                     duplicate++;
                 }
                 all++;
                 publishProgress();
 
-                System.out.println("Uploaded: Entry " + woA2.getName() + ", " + woA2.getDate()+ ", " + woA2.getTime());
+                System.out.println("Uploaded: Entry " + woA2.getName() + ", " + woA2.getDate() + ", " + woA2.getTime());
 
 
             } catch (ClientProtocolException e) {
@@ -354,9 +350,7 @@ public class Upload_Class extends Activity{
         }
 
 
-
     }
-
 
 
 }

@@ -4,28 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HistoryClass">
 
-    <item android:id="@+id/filter"
+    <item
+        android:id="@+id/filter"
+        android:icon="@drawable/filter"
+        android:orderInCategory="100"
         android:title="Filter"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/filter"/>
+        app:showAsAction="always" />
 
-    <item android:id="@+id/graph"
+    <item
+        android:id="@+id/graph"
+        android:icon="@drawable/graphicon"
+        android:orderInCategory="100"
         android:title="Graph"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/graphicon"/>
+        app:showAsAction="always" />
 
-    <item android:id="@+id/delete"
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/trash"
+        android:orderInCategory="100"
         android:title="Delete everything"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:icon="@drawable/trash"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/upload"
-        android:title="Upload"
+    <item
+        android:id="@+id/upload"
+        android:icon="@drawable/upload"
         android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/upload"/>
+        android:title="Upload"
+        app:showAsAction="always" />
 
 </menu>

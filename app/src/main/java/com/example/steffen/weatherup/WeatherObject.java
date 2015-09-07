@@ -28,7 +28,7 @@ public class WeatherObject implements Serializable {
     @Expose
     private Coord coord;
 
-    public static class Coord implements Serializable{
+    public static class Coord implements Serializable {
         String lon;
         String lat;
 
@@ -57,7 +57,7 @@ public class WeatherObject implements Serializable {
     @Expose
     private List<Weather> weather;
 
-    public static class Weather implements Serializable{
+    public static class Weather implements Serializable {
         String id;
         String main;
         String description;
@@ -106,7 +106,7 @@ public class WeatherObject implements Serializable {
     @Expose
     private Main main;
 
-    public static class Main implements Serializable{
+    public static class Main implements Serializable {
         String temp;
         String pressure;
         String humidity;
@@ -165,7 +165,7 @@ public class WeatherObject implements Serializable {
     @Expose
     private Wind wind;
 
-    public static class Wind implements Serializable{
+    public static class Wind implements Serializable {
         String speed;
         String deg;
 
@@ -194,7 +194,7 @@ public class WeatherObject implements Serializable {
     @Expose
     private Clouds clouds;
 
-    public static class Clouds implements Serializable{
+    public static class Clouds implements Serializable {
         String all;
 
         public Clouds(String all) {
@@ -213,7 +213,7 @@ public class WeatherObject implements Serializable {
     @Expose
     private Sys sys;
 
-    public static class Sys implements Serializable{
+    public static class Sys implements Serializable {
         String type;
         String id;
         String message;
@@ -393,7 +393,7 @@ public class WeatherObject implements Serializable {
         this.cod = cod;
     }
 
-    public String toString(){
+    public String toString() {
         return getName();
     }
 
@@ -421,38 +421,93 @@ public class WeatherObject implements Serializable {
         this.primarykey = primarykey;
     }
 
-    public static WeatherObject checkNull(WeatherObject wo){
-        if(wo.getCoord().getLon() == null){wo.getCoord().setLon("Unkown");}
-        if(wo.getCoord().getLat() == null){wo.getCoord().setLat("Unkown");}
-        if(wo.getWeather().get(0).getId() == null){wo.getWeather().get(0).setId("Unkown");}
-        if(wo.getWeather().get(0).getMain() == null){wo.getWeather().get(0).setMain("Unkown");}
-        if(wo.getWeather().get(0).getDescription() == null){wo.getWeather().get(0).setDescription("Unkown");}
-        if(wo.getWeather().get(0).getIcon() == null){wo.getWeather().get(0).setIcon("Unkown");}
-        if(wo.getMain().getTemp() == null){wo.getMain().setTemp("Unkown");}
-        if(wo.getMain().getPressure() == null){wo.getMain().setPressure("Unkown");}
-        if(wo.getMain().getHumidity() == null){wo.getMain().setHumidity("Unkown");}
-        if(wo.getMain().getTemp_min() == null){wo.getMain().setTemp_min("Unkown");}
-        if(wo.getMain().getTemp_max() == null){wo.getMain().setTemp_max("Unkown");}
-        if(wo.getWind().getSpeed() == null){wo.getWind().setSpeed("Unkown");}
-        if(wo.getWind().getDeg() == null){wo.getWind().setDeg("Unkown");}
-        if(wo.getClouds().getAll() == null){wo.getClouds().setAll("Unkown");}
-        if(wo.getSys().getType() == null){wo.getSys().setType("Unkown");}
-        if(wo.getSys().getId() == null){wo.getSys().setId("Unkown");}
-        if(wo.getSys().getMessage() == null){wo.getSys().setMessage("Unkown");}
-        if(wo.getSys().getCountry() == null){wo.getSys().setCountry("Unkown");}
-        if(wo.getSys().getSunrise() == null){wo.getSys().setSunrise("Unkown");}
-        if(wo.getSys().getSunset() == null){wo.getSys().setSunset("Unkown");}
-        if(wo.getBase() == null){wo.setBase("Unkown");}
-        if(wo.getVisibility() == null){wo.setVisibility("Unkown");}
-        if(wo.getDt() == null){wo.setDt("Unkown");}
-        if(wo.getId() == null){wo.setId("Unkown");}
-        if(wo.getName() == null){wo.setName("Unkown");}
-        if(wo.getCod() == null){wo.setCod("Unkown");}
-        if(wo.getTime() == null){wo.setTime("Unkown");}
-        if(wo.getDate() == null){wo.setDate("Unkown");}
-        
-        
-        
+    public static WeatherObject checkNull(WeatherObject wo) {
+        if (wo.getCoord().getLon() == null) {
+            wo.getCoord().setLon("Unkown");
+        }
+        if (wo.getCoord().getLat() == null) {
+            wo.getCoord().setLat("Unkown");
+        }
+        if (wo.getWeather().get(0).getId() == null) {
+            wo.getWeather().get(0).setId("Unkown");
+        }
+        if (wo.getWeather().get(0).getMain() == null) {
+            wo.getWeather().get(0).setMain("Unkown");
+        }
+        if (wo.getWeather().get(0).getDescription() == null) {
+            wo.getWeather().get(0).setDescription("Unkown");
+        }
+        if (wo.getWeather().get(0).getIcon() == null) {
+            wo.getWeather().get(0).setIcon("Unkown");
+        }
+        if (wo.getMain().getTemp() == null) {
+            wo.getMain().setTemp("Unkown");
+        }
+        if (wo.getMain().getPressure() == null) {
+            wo.getMain().setPressure("Unkown");
+        }
+        if (wo.getMain().getHumidity() == null) {
+            wo.getMain().setHumidity("Unkown");
+        }
+        if (wo.getMain().getTemp_min() == null) {
+            wo.getMain().setTemp_min("Unkown");
+        }
+        if (wo.getMain().getTemp_max() == null) {
+            wo.getMain().setTemp_max("Unkown");
+        }
+        if (wo.getWind().getSpeed() == null) {
+            wo.getWind().setSpeed("Unkown");
+        }
+        if (wo.getWind().getDeg() == null) {
+            wo.getWind().setDeg("Unkown");
+        }
+        if (wo.getClouds().getAll() == null) {
+            wo.getClouds().setAll("Unkown");
+        }
+        if (wo.getSys().getType() == null) {
+            wo.getSys().setType("Unkown");
+        }
+        if (wo.getSys().getId() == null) {
+            wo.getSys().setId("Unkown");
+        }
+        if (wo.getSys().getMessage() == null) {
+            wo.getSys().setMessage("Unkown");
+        }
+        if (wo.getSys().getCountry() == null) {
+            wo.getSys().setCountry("Unkown");
+        }
+        if (wo.getSys().getSunrise() == null) {
+            wo.getSys().setSunrise("Unkown");
+        }
+        if (wo.getSys().getSunset() == null) {
+            wo.getSys().setSunset("Unkown");
+        }
+        if (wo.getBase() == null) {
+            wo.setBase("Unkown");
+        }
+        if (wo.getVisibility() == null) {
+            wo.setVisibility("Unkown");
+        }
+        if (wo.getDt() == null) {
+            wo.setDt("Unkown");
+        }
+        if (wo.getId() == null) {
+            wo.setId("Unkown");
+        }
+        if (wo.getName() == null) {
+            wo.setName("Unkown");
+        }
+        if (wo.getCod() == null) {
+            wo.setCod("Unkown");
+        }
+        if (wo.getTime() == null) {
+            wo.setTime("Unkown");
+        }
+        if (wo.getDate() == null) {
+            wo.setDate("Unkown");
+        }
+
+
         return wo;
     }
 }

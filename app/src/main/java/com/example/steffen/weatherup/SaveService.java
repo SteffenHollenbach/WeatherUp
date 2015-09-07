@@ -62,7 +62,7 @@ public class SaveService extends Service {
 
         Log.e("**********", "Tada? " + s);
 
-        for(int i = 0; i < separated.length; i++){
+        for (int i = 0; i < separated.length; i++) {
             Log.e("**********", "Start with " + separated[i]);
             getWeatherID(separated[i], "metric");
         }
@@ -82,9 +82,9 @@ public class SaveService extends Service {
                 + ": WhatTheDroidService zerstoert.");
     }
 
-    public void getWeatherID(final String id, String units){
+    public void getWeatherID(final String id, String units) {
 
-        if (prefs.getInt("Get" + id, -1) == -1){
+        if (prefs.getInt("Get" + id, -1) == -1) {
             prefs.edit().putInt("Get" + id, 0).apply();
         }
         weatherservice.getWeatherID(id, units, new Callback<WeatherObject>() {
@@ -92,8 +92,8 @@ public class SaveService extends Service {
             @Override
             public void success(WeatherObject wo, Response response) {
                 Log.i("Gefunden", "True");
-                if(wo.getCod().equals("200")){
-                    Log.e("*********",wo.getCod());
+                if (wo.getCod().equals("200")) {
+                    Log.e("*********", wo.getCod());
                     wo = WeatherObject.checkNull(wo);
                     new History_Class().add(wo, c, 0, "", "");
                 }

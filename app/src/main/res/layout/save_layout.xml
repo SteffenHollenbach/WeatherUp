@@ -1,64 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#3fadec">
 
     <Button
+        android:id="@+id/btn_start"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Service"
-        android:id="@+id/btn_start"
-        android:layout_marginTop="168dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="168dp"
         android:background="#3fadec"
-        android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:text="Start Service"
+        android:textColor="#ffffff" />
 
     <Button
+        android:id="@+id/btn_stop"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop Service"
-        android:id="@+id/btn_stop"
         android:layout_below="@+id/btn_start"
         android:layout_centerHorizontal="true"
         android:background="#3fadec"
-        android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:text="Stop Service"
+        android:textColor="#ffffff" />
 
     <CheckBox
+        android:id="@+id/cb_running"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Service is running"
-        android:id="@+id/cb_running"
         android:layout_below="@+id/btn_stop"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
         android:checked="false"
         android:clickable="false"
-        android:textColor="#ffffff"/>
+        android:text="Service is running"
+        android:textColor="#ffffff" />
 
     <Button
+        android:id="@+id/btn_show"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Cities"
-        android:id="@+id/btn_show"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="#3fadec"
-        android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:text="Show Cities"
+        android:textColor="#ffffff" />
 
     <Button
+        android:id="@+id/btn_reset"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset Cities"
-        android:id="@+id/btn_reset"
         android:layout_above="@+id/btn_show"
         android:layout_centerHorizontal="true"
-        android:enabled="false"
         android:background="#3fadec"
+        android:enabled="false"
+        android:text="Reset Cities"
         android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"
         android:visibility="invisible" />
 </RelativeLayout>

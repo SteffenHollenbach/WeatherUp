@@ -52,7 +52,6 @@ public class AutoSave_Class extends AppCompatActivity {
                 refreshCeckBox();
 
 
-
             }
         });
 
@@ -85,11 +84,11 @@ public class AutoSave_Class extends AppCompatActivity {
 
     }
 
-    public void refreshCeckBox(){
+    public void refreshCeckBox() {
         cb_running.setChecked(prefs.getBoolean("AlarmSet", false));
     }
 
-    public void startIntent(String s){
+    public void startIntent(String s) {
         SaveReciever sat = new SaveReciever();
         Intent intent = new Intent();
         intent.setAction(s);
@@ -105,7 +104,6 @@ public class AutoSave_Class extends AppCompatActivity {
         }
         return false;
     }
-
 
 
 }

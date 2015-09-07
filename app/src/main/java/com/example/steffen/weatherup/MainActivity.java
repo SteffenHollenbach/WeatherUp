@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Select Source");
 
         lv_source = (ListView) findViewById(R.id.listview);
-        String[] sources = new String[] {"GPS", "Zip-Code", "ID", "Name", "History", "Service-Settings", "Graph", "Server", "Experimental"};
+        String[] sources = new String[]{"GPS", "Zip-Code", "ID", "Name", "History", "Service-Settings", "Graph", "Server", "Experimental"};
 
         final ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < sources.length; ++i) {
@@ -50,36 +50,36 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
-                if (position == 0){
+                if (position == 0) {
                     Intent intent = new Intent(c, SearchByGPS_Class.class);
                     c.startActivity(intent);
-                }else if (position == 1){
+                } else if (position == 1) {
                     Intent intent = new Intent(c, SearchByZip_Class.class);
                     c.startActivity(intent);
-                }else if (position == 2){
+                } else if (position == 2) {
                     Intent intent = new Intent(c, SearchByID_Class.class);
                     c.startActivity(intent);
-                }else if (position == 3){
+                } else if (position == 3) {
                     Intent intent = new Intent(c, SearchByName_Class.class);
                     c.startActivity(intent);
-                }else if (position == 4){
+                } else if (position == 4) {
                     Intent intent = new Intent(c, History_Class.class);
                     c.startActivity(intent);
-                }else if (position == 5){
+                } else if (position == 5) {
                     Intent intent = new Intent(c, AutoSave_Class.class);
                     c.startActivity(intent);
-                }else if (position == 6){
-                    Intent intent = new Intent(c,GraphDrawer_Class.class);
+                } else if (position == 6) {
+                    Intent intent = new Intent(c, GraphDrawer_Class.class);
                     intent.putExtra("cityFilter", "");
                     intent.putExtra("dateFilter", "");
                     c.startActivity(intent);
-                }else if (position == 7){
-                    Intent intent = new Intent(c,Download_Class.class);
+                } else if (position == 7) {
+                    Intent intent = new Intent(c, Download_Class.class);
                     c.startActivity(intent);
-                }else if (position == 8){
-                    Intent intent = new Intent(c,MoveTest_Class.class);
+                } else if (position == 8) {
+                    Intent intent = new Intent(c, MoveTest_Class.class);
                     c.startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(c, "If you see this something went wrong", Toast.LENGTH_SHORT).show();
                 }
 

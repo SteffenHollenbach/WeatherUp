@@ -56,8 +56,8 @@ public class ShowServiceCities_Class extends AppCompatActivity {
         //Log.e("*******", seperated.length+"");
 
         //saved = Arrays.asList(seperated);
-        for(int i = 0; i < seperated.length; i++){
-            if (!seperated[i].equals("")){
+        for (int i = 0; i < seperated.length; i++) {
+            if (!seperated[i].equals("")) {
                 saved.add(prefs.getString(seperated[i], "Error") + " (" + seperated[i] + ")");
             }
 
@@ -94,7 +94,6 @@ public class ShowServiceCities_Class extends AppCompatActivity {
         });*/
 
 
-
     }
 
     @Override
@@ -114,7 +113,7 @@ public class ShowServiceCities_Class extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setSwipeListView(){
+    public void setSwipeListView() {
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -144,7 +143,7 @@ public class ShowServiceCities_Class extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         String s = mListView.getAdapter().getItem(position).toString();
-                        s = s.substring(s.indexOf("(")+1, s.length()-1);
+                        s = s.substring(s.indexOf("(") + 1, s.length() - 1);
 
                         String t = prefs.getString("ServiceCities", "");
                         t = t.replace(s + ",", "");

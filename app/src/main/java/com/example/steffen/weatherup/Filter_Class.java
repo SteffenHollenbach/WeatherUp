@@ -51,12 +51,11 @@ public class Filter_Class extends AppCompatActivity implements DatePickerDialog.
         });
 
 
-
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 History_Class.prefs.edit().putString("CityFilter", et_city.getText().toString().replace(" ", "").replace("-", "").replace("ü", "ue").replace("ä", "ae").replace("ö", "oe").replace("Ü", "Ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("ß", "ss")).apply();
-                History_Class.prefs.edit().putString("DateFilter", et_date.getText().toString().replace(" ","")).apply();
+                History_Class.prefs.edit().putString("DateFilter", et_date.getText().toString().replace(" ", "")).apply();
 
                 finish();
             }
@@ -79,18 +78,18 @@ public class Filter_Class extends AppCompatActivity implements DatePickerDialog.
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
 
-        String day = dayOfMonth+"";
-        String month = ((int)(++monthOfYear))+"";
+        String day = dayOfMonth + "";
+        String month = ++monthOfYear + "";
 
-        Log.e("vvvvv",month);
+        Log.e("vvvvv", month);
 
-        if (dayOfMonth < 10){
+        if (dayOfMonth < 10) {
             day = "0" + dayOfMonth;
         }
-        if (monthOfYear < 10){
+        if (monthOfYear < 10) {
             month = "0" + monthOfYear;
         }
-        String date = day+"."+month+"."+year;
+        String date = day + "." + month + "." + year;
         et_date.setText(date);
     }
 }

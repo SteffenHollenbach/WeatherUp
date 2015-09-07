@@ -68,7 +68,7 @@ public class Download_CityEntries_Class extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
-                Intent intent = new Intent(c,Show_SingleServerEntry_Class.class);
+                Intent intent = new Intent(c, Show_SingleServerEntry_Class.class);
 
                 String[] temp = sources[position].split(" ");
                 String date = temp[0].substring(0, temp[0].length() - 1);
@@ -87,12 +87,12 @@ public class Download_CityEntries_Class extends AppCompatActivity {
 
     }
 
-    public String[] getCityEntriesFromServer(int position){
-        String [] result;
+    public String[] getCityEntriesFromServer(int position) {
+        String[] result;
         StringBuilder total = new StringBuilder();
 
         try {
-            URL url = new URL("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/getCityEntries.php?CityName="+sourcesFull[position]); //Skript ausführen
+            URL url = new URL("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/getCityEntries.php?CityName=" + sourcesFull[position]); //Skript ausführen
             HttpURLConnection mUrlConnection;
             mUrlConnection = (HttpURLConnection) url.openConnection();
             mUrlConnection.setDoInput(true);

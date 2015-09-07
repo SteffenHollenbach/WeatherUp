@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ShowServiceCitiesClass">
 
-    <item android:id="@+id/delete"
-        android:title="Delete everything"
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/trash"
         android:orderInCategory="100"
-        app:showAsAction="never"
-        android:icon="@drawable/trash"/>
+        android:title="Delete everything"
+        app:showAsAction="never" />
 
 </menu>

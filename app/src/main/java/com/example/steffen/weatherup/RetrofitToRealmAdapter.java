@@ -6,7 +6,7 @@ import io.realm.annotations.PrimaryKey;
 /**
  * Created by Steffen on 26.07.2015.
  */
-public class RetrofitToRealmAdapter extends RealmObject{
+public class RetrofitToRealmAdapter extends RealmObject {
 
     private String lon;
     private String lat;
@@ -66,11 +66,11 @@ public class RetrofitToRealmAdapter extends RealmObject{
         this.deg = wo.getWind().getDeg();
         this.all = wo.getClouds().getAll();
         this.type = wo.getSys().getType();
-        this.sys_id =  wo.getSys().getId();
-        this.message =  wo.getSys().getMessage();
-        this.country =  wo.getSys().getCountry();
-        this.sunrise =  wo.getSys().getSunrise();
-        this.sunset =  wo.getSys().getSunset();
+        this.sys_id = wo.getSys().getId();
+        this.message = wo.getSys().getMessage();
+        this.country = wo.getSys().getCountry();
+        this.sunrise = wo.getSys().getSunrise();
+        this.sunset = wo.getSys().getSunset();
         this.base = wo.getBase();
         this.visibility = wo.getVisibility();
         this.dt = wo.getDt();

@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3fadec">
+    android:background="#3fadec"
+    android:orientation="horizontal">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#3fadec"
-        android:layout_weight="2"
-        android:layout_below="@+id/tv_date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/scrollView">
+        android:layout_below="@+id/tv_date"
+        android:layout_weight="2"
+        android:background="#3fadec">
 
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@+id/tv_result"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/tv_result"
+            android:layout_column="2"
             android:layout_marginTop="30dp"
-            android:layout_span="5"
-            android:layout_column="2">
+            android:layout_span="5">
 
             <TableRow
                 android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:padding="5dip">
 
                 <TextView
                     android:id="@+id/tv_city"
@@ -38,13 +39,13 @@
                     android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_city_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_city_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
 
@@ -56,176 +57,181 @@
                 android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:padding="5dip">
 
                 <TextView
                     android:id="@+id/tv_temp"
                     android:text="Temperatur: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_temp_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_temp_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
+
             <TableRow
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:padding="5dip">
 
                 <TextView
                     android:id="@+id/tv_weather_desc"
                     android:text="Wetter: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_weather_desc_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_weather_desc_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
+
             <TableRow
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:padding="5dip">
 
                 <TextView
                     android:id="@+id/tv_wind_speed"
                     android:text="Windgeschwindigkeit: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_wind_speed_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_wind_speed_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
+
             <TableRow
                 android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:padding="5dip">
 
                 <TextView
                     android:id="@+id/tv_humidity"
                     android:text="Luftfeuchte: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_humidity_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_humidity_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
+
             <TableRow
                 android:id="@+id/tableRow6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
                 android:gravity="center_horizontal"
+                android:padding="5dip"
                 android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_pressure"
                     android:text="Luftdruck: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_pressure_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_pressure_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
+
             <TableRow
                 android:id="@+id/tableRow7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip"
                 android:gravity="center_horizontal"
+                android:padding="5dip"
                 android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_visibility"
                     android:text="Sichtbarkeit: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff"/>
+                    android:textColor="#ffffff" />
 
                 <TextView
+                    android:id="@+id/tv_visibility_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Unknown"
-                    android:id="@+id/tv_visibility_result"
                     android:layout_column="15"
-                    android:textColor="#ffffff"/>
+                    android:text="Unknown"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#ffffff" />
 
             </TableRow>
         </TableLayout>
     </ScrollView>
 
     <Button
+        android:id="@+id/btn_save"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save to device"
-        android:id="@+id/btn_save"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="#3fadec"
-        android:textColor="#ffffff"
-        style="?android:attr/borderlessButtonStyle"/>
+        android:text="Save to device"
+        android:textColor="#ffffff" />
 
     <TextView
+        android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="DD.MM.YYYY"
-        android:id="@+id/tv_date"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#ffffff"/>
+        android:layout_alignParentTop="true"
+        android:text="DD.MM.YYYY"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff" />
 
     <TextView
+        android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="HH:MM:SS"
-        android:id="@+id/tv_time"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textColor="#ffffff"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="HH:MM:SS"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>
