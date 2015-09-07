@@ -123,7 +123,7 @@ public class History_Class extends ActionBarActivity {
         }
 
         if (saved.size() == 0){
-            Toast.makeText(MainActivity.c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
+            Toast.makeText(c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -269,7 +269,7 @@ public class History_Class extends ActionBarActivity {
 
         arrayAdapter = new ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_list_item_1,
+                R.layout.white_list_item_text,
                 saved);
 
         mListView.setAdapter(arrayAdapter);

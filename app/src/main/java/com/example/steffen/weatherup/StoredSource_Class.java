@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by Steffen on 07.09.2015.
  */
-public class StoredSource_Class extends ActionBarActivity {
+public class StoredSource_Class extends AppCompatActivity {
 
     static Context c;
     ResideMenu resideMenu;
@@ -31,6 +31,7 @@ public class StoredSource_Class extends ActionBarActivity {
         setContentView(R.layout.select_source_layout);
 
         c = this;
+
 
         resideMenu = ResideMenus_Class.getMainMenu(c, this);
 
@@ -47,7 +48,7 @@ public class StoredSource_Class extends ActionBarActivity {
             list.add(sources[i]);
         }
         final ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, list);
+                R.layout.white_list_item_text, list);
         lv_source.setAdapter(adapter);
 
         lv_source.setOnItemClickListener(new AdapterView.OnItemClickListener() {

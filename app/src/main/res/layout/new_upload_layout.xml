@@ -2,14 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ec5745">
+    android:background="#3fadec">
 
 <is.arontibo.library.ElasticDownloadView
     android:id="@+id/elastic_download_view"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#3fadec" />
 
 
 

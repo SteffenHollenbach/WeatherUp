@@ -94,7 +94,7 @@ public class GraphDrawer_Class extends ActionBarActivity{
         Log.e("******", "WoList-Size: " + query.size());
 
         if (woList.size() == 0){
-            Toast.makeText(MainActivity.c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
+            Toast.makeText(c, "Kein Eintrag gefunden", Toast.LENGTH_LONG).show();
         }
     }
 

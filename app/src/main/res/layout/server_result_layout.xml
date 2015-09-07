@@ -50,7 +50,7 @@
 
             <View
                 android:layout_height="2dip"
-                android:background="#FF0000" />
+                android:background="#ec5745" />
 
             <TableRow
                 android:id="@+id/tableRow2"
@@ -200,10 +200,11 @@
         android:layout_height="wrap_content"
         android:text="Save to device"
         android:id="@+id/btn_save"
-        android:textColor="#ffffff"
-        android:background="#40adec"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#3fadec"
+        android:textColor="#ffffff"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <TextView
         android:layout_width="wrap_content"

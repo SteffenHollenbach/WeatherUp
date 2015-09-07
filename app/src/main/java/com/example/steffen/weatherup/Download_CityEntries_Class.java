@@ -59,7 +59,7 @@ public class Download_CityEntries_Class extends ActionBarActivity {
             list.add(sources[i]);
         }
         final ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, list);
+                R.layout.white_list_item_text, list);
         lv_source.setAdapter(adapter);
 
         lv_source.setOnItemClickListener(new AdapterView.OnItemClickListener() {

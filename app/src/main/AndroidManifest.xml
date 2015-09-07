@@ -13,7 +13,7 @@
         android:allowBackup="true"
         android:icon="@drawable/weather_logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppThemeX" >
         <activity
             android:name=".Start_Class"
             android:label="WeatherUp" >
