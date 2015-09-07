@@ -36,6 +36,7 @@
         <activity android:name=".ShowServiceCities_Class"  android:label="Service Cities"/>
         <activity android:name=".Upload_Class"  android:label="Upload Data"/>
         <activity android:name=".Download_Class"  android:label="Select data to download:"/>
+        <activity android:name=".Download_Class_Stage2"  android:label="Select data to download:"/>
         <activity android:name=".Download_CityEntries_Class"  android:label="Select data to download:"/>
         <activity android:name=".Show_SingleServerEntry_Class"  android:label="Result"/>
         <activity android:name=".MoveTest_Class"  android:label="MOVE!!!"/>

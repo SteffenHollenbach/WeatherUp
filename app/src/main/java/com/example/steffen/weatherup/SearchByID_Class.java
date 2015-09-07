@@ -1,6 +1,8 @@
 package com.example.steffen.weatherup;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -70,7 +72,19 @@ public class SearchByID_Class extends AppCompatActivity {
 
             @Override
             public void failure(RetrofitError error) {
+
                 Log.e("Gefunden", "Nein: " + error);
+                new AlertDialog.Builder(c)
+                        .setTitle("Error")
+                        .setMessage("Can't connect to weather service. Please make sure you have a working internet connection.")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        }).setIcon(R.drawable.error).show();
+
             }
         });
     }

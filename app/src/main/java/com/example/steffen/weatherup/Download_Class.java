@@ -6,12 +6,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.victor.loading.newton.NewtonCradleLoading;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,7 +22,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 /**
  * Created by Steffen on 05.09.2015.
@@ -30,15 +32,22 @@ public class Download_Class extends AppCompatActivity {
     SharedPreferences prefs;
     ListView lv_source;
     String[] sourcesFull;
+    Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_source_layout);
+        setContentView(R.layout.loading_gps_layout);
+
+        TextView tv = (TextView) findViewById(R.id.tv_waiting);
+        tv.setText("Waiting for server");
+
+        NewtonCradleLoading newton = (NewtonCradleLoading) findViewById(R.id.newton_cradle_loading);
+        newton.start();
 
         c = this;
 
-        setTitle("Select data to download:");
+        setTitle("Connect to server");
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -46,37 +55,26 @@ public class Download_Class extends AppCompatActivity {
         }
 
         lv_source = (ListView) findViewById(R.id.listview);
-        final String[] sources = getCitiesFromServer();
 
-        final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < sources.length; ++i) {
-            list.add(sources[i]);
-        }
-        final ArrayAdapter adapter = new ArrayAdapter(this,
-                R.layout.white_list_item_text, list);
-        lv_source.setAdapter(adapter);
+        Thread networkThread = new Thread() {
+            public void run() {
 
-        lv_source.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view,
-                                    int position, long id) {
-
-                Intent intent = new Intent(c,Download_CityEntries_Class.class);
-                intent.putExtra("position", (int)position);
-                intent.putExtra("cityNameClear", sources[position]);
-                Bundle b = new Bundle();
-                b.putStringArray("sourcesFull", sourcesFull);
-                intent.putExtras(b);
-                c.startActivity(intent);
-
+                getCitiesFromServer();
             }
+        };
 
-        });
+        networkThread.start();
+
+        mHandler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message message) {
+                createDialog("Error","Error contacting server or no data on server",0);
+            }
+        };
 
     }
 
-    public String[] getCitiesFromServer(){
+    public void getCitiesFromServer(){
         String [] result = null;
         StringBuilder total = new StringBuilder();
 
@@ -104,11 +102,15 @@ public class Download_Class extends AppCompatActivity {
             }
         } catch (Exception e){
 
-            createDialog("Error","Error contacting server or no data on server",0);
-            //finish();
+            //createDialog("Error","Error contacting server or no data on server",0);
+            Message message = mHandler.obtainMessage();
+            message.sendToTarget();
         }
 
-        return result;
+        Bundle b = new Bundle();
+        b.putStringArray("sources", result);
+        Intent i = new Intent(c, Download_Class_Stage2.class);
+        i.putExtras(b);
     }
 
     void createDialog(String title, String text, final int afterClick){ // 0 = finish(), 1 = close dialog

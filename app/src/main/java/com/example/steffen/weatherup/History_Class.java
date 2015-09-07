@@ -237,7 +237,7 @@ public class History_Class extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_history, menu);
+        getMenuInflater().inflate(R.menu.menu_swipe_left_option, menu);
         return true;
     }
 
@@ -245,30 +245,9 @@ public class History_Class extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.filter) {
-            Intent intent = new Intent(c, Filter_Class.class);
-            c.startActivity(intent);
-        }else if (id == R.id.graph) {
-            Intent intent = new Intent(c, GraphDrawer_Class.class);
-            intent.putExtra("cityFilter", prefs.getString("CityFilter", ""));
-            intent.putExtra("dateFilter", prefs.getString("DateFilter", ""));
-            c.startActivity(intent);
-        }else if (id == R.id.delete) {
-            Realm realm = Realm.getInstance(c);
-            realm.beginTransaction();
-            realm.where(RetrofitToRealmAdapter.class).findAll().clear();
-            realm.commitTransaction();
-            Toast.makeText(c, "Database cleared", Toast.LENGTH_SHORT).show();
-            finish();
-            Intent intent = new Intent(c, History_Class.class);
-            c.startActivity(intent);
-        }else if (id == R.id.upload) {
-            Intent intent = new Intent(c, Upload_Class.class);
-            intent.putExtra("cityFilter", prefs.getString("CityFilter", ""));
-            intent.putExtra("dateFilter", prefs.getString("DateFilter", ""));
-            c.startActivity(intent);
+        if (id == R.id.swipeLeft) {
+            resideMenu.openMenu(ResideMenu.DIRECTION_RIGHT);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
