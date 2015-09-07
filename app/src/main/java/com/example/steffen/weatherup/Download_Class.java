@@ -111,6 +111,11 @@ public class Download_Class extends AppCompatActivity {
         b.putStringArray("sources", result);
         Intent i = new Intent(c, Download_Class_Stage2.class);
         i.putExtras(b);
+        c.startActivity(i);
+
+        //Log.e("*******************","HERE");
+
+
     }
 
     void createDialog(String title, String text, final int afterClick){ // 0 = finish(), 1 = close dialog

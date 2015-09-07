@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:label="Main"/>
+        <!--<activity android:name=".MainActivity" android:label="Main"/>-->
         <activity android:name=".SearchByZip_Class" android:label="Enter Zip-Code"/>
         <activity android:name=".SearchByGPS_Class" android:label="Searching GPS"/>
         <activity android:name=".SearchByID_Class" android:label="Enter City-ID"/>

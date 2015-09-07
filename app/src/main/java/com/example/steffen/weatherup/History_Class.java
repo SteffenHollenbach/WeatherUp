@@ -71,7 +71,8 @@ public class History_Class extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
 
-                String s = mListView.getAdapter().getItem(position).toString();
+                //String s = mListView.getAdapter().getItem(position).toString();
+                String s = saved.get(position);
 
                 WeatherObject wo = new RealmToRetrofitAdapter(loadSingle(s)).createWeatherObject();
 
@@ -262,10 +263,18 @@ public class History_Class extends AppCompatActivity{
     public void initialize(){
         loadData();
 
+        String[] seperated = saved.toArray(new String[saved.size()]);
+
+        for (int i = 0; i < seperated.length; i++){
+            seperated[i] = new StringBuilder(seperated[i].replace(",",", ")).append(" Uhr").toString();
+        }
+
+
+
         arrayAdapter = new ArrayAdapter<String>(
                 this,
                 R.layout.white_list_item_text,
-                saved);
+                seperated);
 
         mListView.setAdapter(arrayAdapter);
 
