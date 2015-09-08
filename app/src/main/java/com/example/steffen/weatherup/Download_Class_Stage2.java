@@ -33,6 +33,7 @@ public class Download_Class_Stage2 extends AppCompatActivity {
 
         Bundle b = this.getIntent().getExtras();
         final String[] sources = b.getStringArray("sources");
+        sourcesFull = b.getStringArray("sourcesFull");
 
 
         lv_source = (ListView) findViewById(R.id.listview);

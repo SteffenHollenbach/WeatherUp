@@ -163,7 +163,7 @@ public class Upload_Class extends Activity {
 
             running = false;
 
-            //TODO info für benutzer
+
         }
         return true;
     }

@@ -93,6 +93,8 @@ public class Download_Class extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        boolean goOn = true;
+
         try {
             result = total.toString().split(";");
             sourcesFull = total.toString().split(";");
@@ -102,16 +104,21 @@ public class Download_Class extends AppCompatActivity {
             }
         } catch (Exception e) {
 
+            goOn = false;
+
             //createDialog("Error","Error contacting server or no data on server",0);
             Message message = mHandler.obtainMessage();
             message.sendToTarget();
         }
 
-        Bundle b = new Bundle();
-        b.putStringArray("sources", result);
-        Intent i = new Intent(c, Download_Class_Stage2.class);
-        i.putExtras(b);
-        c.startActivity(i);
+        if (goOn == true) {
+            Bundle b = new Bundle();
+            b.putStringArray("sources", result);
+            b.putStringArray("sourcesFull", sourcesFull);
+            Intent i = new Intent(c, Download_Class_Stage2.class);
+            i.putExtras(b);
+            c.startActivity(i);
+        }
 
         //Log.e("*******************","HERE");
 

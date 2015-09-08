@@ -63,7 +63,8 @@
                     android:id="@+id/tv_city"
                     android:text="Stadt: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_city_result"
@@ -72,7 +73,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
 
@@ -91,7 +93,8 @@
                     android:id="@+id/tv_temp"
                     android:text="Temperatur: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_temp_result"
@@ -100,7 +103,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
 
@@ -115,7 +119,8 @@
                     android:id="@+id/tv_weather_desc"
                     android:text="Wetter: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_weather_desc_result"
@@ -124,7 +129,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
 
@@ -139,7 +145,8 @@
                     android:id="@+id/tv_wind_speed"
                     android:text="Windgeschwindigkeit: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_wind_speed_result"
@@ -148,7 +155,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
 
@@ -163,7 +171,8 @@
                     android:id="@+id/tv_humidity"
                     android:text="Luftfeuchte: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_humidity_result"
@@ -172,7 +181,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
 
@@ -188,7 +198,8 @@
                     android:id="@+id/tv_pressure"
                     android:text="Luftdruck: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_pressure_result"
@@ -197,7 +208,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
 
@@ -213,7 +225,8 @@
                     android:id="@+id/tv_visibility"
                     android:text="Sichtbarkeit: "
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
                 <TextView
                     android:id="@+id/tv_visibility_result"
@@ -222,7 +235,8 @@
                     android:layout_column="15"
                     android:text="Unknown"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/abc_text_size_medium_material" />
 
             </TableRow>
         </TableLayout>

@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".MainActivity" android:label="Main"/>-->
         <activity android:name=".SearchByZip_Class" android:label="Enter Zip-Code"/>
         <activity android:name=".SearchByGPS_Class" android:label="Searching GPS"/>
         <activity android:name=".SearchByID_Class" android:label="Enter City-ID"/>
@@ -39,7 +38,6 @@
         <activity android:name=".Download_Class_Stage2"  android:label="Select data to download:"/>
         <activity android:name=".Download_CityEntries_Class"  android:label="Select data to download:"/>
         <activity android:name=".Show_SingleServerEntry_Class"  android:label="Result"/>
-        <activity android:name=".MoveTest_Class"  android:label="MOVE!!!"/>
         <activity android:name=".StoredSource_Class"  android:label="Stored"/>
         <activity android:name=".LiveSource_Class"  android:label="Live"/>
 
