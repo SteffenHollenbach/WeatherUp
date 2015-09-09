@@ -30,9 +30,9 @@ public class Download_Class extends AppCompatActivity {
 
     static Context c;
     SharedPreferences prefs;
-    ListView lv_source;
-    String[] sourcesFull;
-    Handler mHandler;
+    private ListView lv_source;
+    private String[] sourcesFull;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,7 @@ public class Download_Class extends AppCompatActivity {
 
     }
 
-    public void getCitiesFromServer() {
+    private void getCitiesFromServer() {
         String[] result = null;
         StringBuilder total = new StringBuilder();
 
@@ -111,7 +111,7 @@ public class Download_Class extends AppCompatActivity {
             message.sendToTarget();
         }
 
-        if (goOn == true) {
+        if (goOn) {
             Bundle b = new Bundle();
             b.putStringArray("sources", result);
             b.putStringArray("sourcesFull", sourcesFull);
@@ -125,7 +125,7 @@ public class Download_Class extends AppCompatActivity {
 
     }
 
-    void createDialog(String title, String text, final int afterClick) { // 0 = finish(), 1 = close dialog
+    private void createDialog(String title, String text, final int afterClick) { // 0 = finish(), 1 = close dialog
 
         new AlertDialog.Builder(c)
                 .setTitle(title)
@@ -136,8 +136,6 @@ public class Download_Class extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (afterClick == 0) {
                             finish();
-                        } else if (afterClick == 1) {
-
                         }
 
                     }

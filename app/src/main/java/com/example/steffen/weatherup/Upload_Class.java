@@ -38,12 +38,12 @@ import is.arontibo.library.ElasticDownloadView;
  */
 public class Upload_Class extends Activity {
 
-    List<RetrofitToRealmAdapter> woList = new ArrayList<>();
+    final List<RetrofitToRealmAdapter> woList = new ArrayList<>();
     //List<XYSeries> seriesList = new ArrayList<>();
-    String dateFilter, cityFilter;
-    TextView tv_status, tv_status2, tv_finish;
-    ImageView iv_check;
-    SeekBar sb_progress;
+    private String dateFilter, cityFilter;
+    private TextView tv_status, tv_status2, tv_finish;
+    private ImageView iv_check;
+    private SeekBar sb_progress;
     int error = 0, all = 0, duplicate = 0, allInAll;
     Context c;
     boolean running = true;
@@ -127,7 +127,7 @@ public class Upload_Class extends Activity {
     }
 
 
-    public boolean createOnlineTable(String CityName, String CityId) {
+    public void createOnlineTable(String CityName, String CityId) {
 
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://steffen-dell.khicprtogzhehhpq.myfritz.net:18188/createTable.php");
@@ -165,7 +165,7 @@ public class Upload_Class extends Activity {
 
 
         }
-        return true;
+
     }
 
     void createDialog(String title, String text, final int afterClick) { // 0 = finish(), 1 = close dialog
@@ -181,8 +181,6 @@ public class Upload_Class extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (afterClick == 0) {
                             finish();
-                        } else if (afterClick == 1) {
-
                         }
 
                     }
@@ -212,7 +210,7 @@ public class Upload_Class extends Activity {
             //tv_status2.setVisibility(View.INVISIBLE);
             //sb_progress.setVisibility(View.INVISIBLE);*/
 
-            if (running == false) {
+            if (!running) {
 
                 mElasticDownloadView.fail();
                 createDialog("Error", "Server Unreachable", 1);
@@ -287,7 +285,7 @@ public class Upload_Class extends Activity {
 
                     for (RetrofitToRealmAdapter woA2 : woList2) {
                         Log.e("******", "Send Data: ");
-                        if (running == true) {
+                        if (running) {
                             sendData(woA2);
                         }
                     }
@@ -298,7 +296,7 @@ public class Upload_Class extends Activity {
 
         }
 
-        public boolean sendData(RetrofitToRealmAdapter woA2) { //Daten des Objektes an den Server übertragen
+        public void sendData(RetrofitToRealmAdapter woA2) { //Daten des Objektes an den Server übertragen
 
 
             // Create a new HttpClient and Post Header
@@ -353,7 +351,7 @@ public class Upload_Class extends Activity {
                 //tv_status.setText("IO Exception");
                 //sb_progress.setVisibility(View.INVISIBLE);
             }
-            return true;
+
         }
 
 

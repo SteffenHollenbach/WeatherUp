@@ -21,9 +21,9 @@ import java.util.Date;
  */
 public class ShowResult_Class extends AppCompatActivity {
 
-    TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_pressure_result, tv_visibility_result, tv_time, tv_date;
-    Button btn_save, btn_service, btn_view;
-    TableRow t6, t7;
+    private TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_pressure_result, tv_visibility_result, tv_time, tv_date;
+    private Button btn_save, btn_service, btn_view;
+    private TableRow t6, t7;
     WeatherObject wo;
     Context c;
     Boolean basic = true;
@@ -117,7 +117,7 @@ public class ShowResult_Class extends AppCompatActivity {
 
                     Toast.makeText(c, "Extended", Toast.LENGTH_SHORT).show();
 
-                } else if (basic == false) {
+                } else if (!basic) {
                     basic = true;
 
                     t6.setVisibility(View.GONE);

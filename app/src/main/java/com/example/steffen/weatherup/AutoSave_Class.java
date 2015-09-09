@@ -17,8 +17,8 @@ import com.special.ResideMenu.ResideMenu;
  */
 public class AutoSave_Class extends AppCompatActivity {
 
-    Button btn_start, btn_stop, btn_show, btn_reset;
-    CheckBox cb_running;
+    private Button btn_start, btn_stop, btn_show, btn_reset;
+    private CheckBox cb_running;
     Context c;
     static SharedPreferences prefs;
     ResideMenu resideMenu;
@@ -88,7 +88,7 @@ public class AutoSave_Class extends AppCompatActivity {
         cb_running.setChecked(prefs.getBoolean("AlarmSet", false));
     }
 
-    public void startIntent(String s) {
+    private void startIntent(String s) {
         SaveReciever sat = new SaveReciever();
         Intent intent = new Intent();
         intent.setAction(s);

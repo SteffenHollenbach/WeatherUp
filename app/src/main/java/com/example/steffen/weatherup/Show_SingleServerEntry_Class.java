@@ -25,9 +25,9 @@ import java.util.List;
 public class Show_SingleServerEntry_Class extends AppCompatActivity {
 
     static Context c;
-    String date, time, cityNameClear, tableName;
-    TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_time, tv_date;
-    Button btn_save;
+    private String date, time, cityNameClear, tableName;
+    private TextView tv_city_result, tv_temp_result, tv_weather_desc_result, tv_wind_speed_result, tv_humidity_result, tv_time, tv_date;
+    private Button btn_save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

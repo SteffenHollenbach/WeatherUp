@@ -19,8 +19,8 @@ public class Download_Class_Stage2 extends AppCompatActivity {
 
     static Context c;
     SharedPreferences prefs;
-    ListView lv_source;
-    String[] sourcesFull;
+    private ListView lv_source;
+    private String[] sourcesFull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

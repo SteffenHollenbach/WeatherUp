@@ -31,7 +31,7 @@ public class ShowServiceCities_Class extends AppCompatActivity {
     SharedPreferences prefs;
     private SwipeMenuListView mListView;
     ArrayAdapter<String> arrayAdapter;
-    List<String> saved = new ArrayList<String>();
+    final List<String> saved = new ArrayList<String>();
     ResideMenu resideMenu;
 
     @Override

@@ -33,8 +33,8 @@ public class GraphDrawer_Class extends AppCompatActivity {
     Context c;
     XYSeries temp_series;
     LinearLayout chart_lay;
-    List<RetrofitToRealmAdapter> woList = new ArrayList<>();
-    List<XYSeries> seriesList = new ArrayList<>();
+    final List<RetrofitToRealmAdapter> woList = new ArrayList<>();
+    final List<XYSeries> seriesList = new ArrayList<>();
 
 
     String dateFilter, cityFilter;

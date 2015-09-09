@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class RealmToRetrofitAdapter {
 
-    WeatherObject wo;
+    final WeatherObject wo;
 
     public RealmToRetrofitAdapter(RetrofitToRealmAdapter woA) {
         WeatherObject.Coord coord = new WeatherObject.Coord(woA.getLon(), woA.getLat());

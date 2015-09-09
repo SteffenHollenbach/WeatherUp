@@ -36,8 +36,8 @@ import io.realm.RealmResults;
  */
 public class History_Class extends AppCompatActivity {
 
-    List<RetrofitToRealmAdapter> woList = new ArrayList<>();
-    List<String> saved = new ArrayList<>();
+    final List<RetrofitToRealmAdapter> woList = new ArrayList<>();
+    final List<String> saved = new ArrayList<>();
     //private ListView mListView;
     private SwipeMenuListView mListView;
     static SharedPreferences prefs;
