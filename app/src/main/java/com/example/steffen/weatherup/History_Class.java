@@ -145,6 +145,8 @@ public class History_Class extends AppCompatActivity {
     }
 
     public RetrofitToRealmAdapter loadSingle(String input) {
+        input = input.substring(0, input.length() - 4).replace(" ", "");
+        //Log.e("***INPUT***", input);
         String[] separated = input.split(",");
         Realm realm = Realm.getInstance(this);
         RealmResults<RetrofitToRealmAdapter> query = realm.where(RetrofitToRealmAdapter.class)

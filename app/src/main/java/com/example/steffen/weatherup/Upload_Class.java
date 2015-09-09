@@ -325,13 +325,20 @@ public class Upload_Class extends Activity {
                 // Execute HTTP Post Request
                 ResponseHandler<String> resonseHandler = new BasicResponseHandler();
                 String response = httpclient.execute(httppost, resonseHandler);
-                Log.e("******", response);
+
                 if (response.toLowerCase().contains("error")) {
                     error++;
+                    //Log.e("*ERROR*RESPONSE*", response);
                 }
                 if (response.toLowerCase().contains("duplicate")) {
                     duplicate++;
                 }
+
+                if (response.toLowerCase().contains("error") & !(response.toLowerCase().contains("duplicate"))) {
+
+                    Log.e("*ERROR*RESPONSE*", response);
+                }
+
                 all++;
                 publishProgress();
 
